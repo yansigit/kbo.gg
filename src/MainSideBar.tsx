@@ -16,49 +16,54 @@ export class MainSideBar extends React.Component {
         },
     }
 
-    constructor(props: {} | Readonly<{}>) {
+    constructor(props: any) {
         super(props);
     }
 
     render() {
+        let bg_image = "/logo_ds.png";
+
         return <div><Card className="rounded-0">
             <Card.Header>
                 두산 베어스 타자
             </Card.Header>
             <Card.Body>
                 <Row>
-                    <Col>
-                        <img className="border border-dark w-100"
+                    <Col md={4}>
+                        <img width="50px" className="border border-dark"
                              src="https://sports-phinf.pstatic.net/player/kbo/default/76267.png"/>
                     </Col>
-                    <Col xs={8}>
-                        <Card.Title>최주환</Card.Title>
+                    <Col md={8}>
+                        <Card.Title as="p">최주환</Card.Title>
                         <Card.Text>
-                            <Table striped bordered hover size="sm">
-                                <tbody>
-                                <tr>
-                                    <td>타석</td>
-                                    <td>1</td>
-                                    <td>타수</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>안타</td>
-                                    <td>1</td>
-                                    <td>피삼진</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>타점</td>
-                                    <td>1</td>
-                                    <td>홈런</td>
-                                    <td>1</td>
-                                </tr>
-                                </tbody>
-                            </Table>
+                            테스트 테스트
                         </Card.Text>
                     </Col>
                 </Row>
+            </Card.Body>
+            <Card.Body>
+                <Table striped bordered hover size="sm" className="m-0">
+                    <tbody>
+                    <tr>
+                        <td>타석</td>
+                        <td>1</td>
+                        <td>타수</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>안타</td>
+                        <td>1</td>
+                        <td>피삼진</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>타점</td>
+                        <td>1</td>
+                        <td>홈런</td>
+                        <td>1</td>
+                    </tr>
+                    </tbody>
+                </Table>
             </Card.Body>
         </Card>
 
