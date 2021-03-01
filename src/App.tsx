@@ -29,7 +29,7 @@ function App() {
           <Col xl={{span:2, order: 'first'}}>
             <MainSideBar className="mt-4" />
           </Col>
-          <Col xl={{span: 8}} lg={{order: 'first'}}>
+          <Col xl={{span: 8}} xs={{order: 'first'}}>
             <Card className="rounded-0 mt-4">
               <Card.Header>
                 실시간 경기
