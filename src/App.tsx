@@ -10,30 +10,38 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
-      <Container fluid className="mt-4">
+      <Container fluid>
         <Row>
-          <Col sm={3} lg={2}>
-            <MainSideBar />
+          <Col xl={{span:2, order: 'first'}}>
+            <MainSideBar className="mt-4" />
           </Col>
-          <Col sm={6} lg={8}>
-            <Card className="rounded-0">
+          <Col xl={{span: 8}} lg={{order: 'first'}}>
+            <Card className="rounded-0 mt-4">
               <Card.Header>
-                실시간 경기 영상
+                실시간 경기
               </Card.Header>
               <Card.Body>
-                <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0" frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen/>
+                <Row>
+                  <Col>
+                    <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen/>
+                  </Col>
+                  <Col>
+                    <iframe className="w-100" height="450px" frameBorder="0" src="https://sports.news.naver.com/gameCenter/miniTextRelay.nhn?category=kbo&date=20201124&gameId=77771124OBNC02020" />
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
+
             <Card className="rounded-0 mt-4">
               <Card.Body>
-                <iframe className="w-100" height="500px" frameBorder="0" src="https://sports.news.naver.com/gameCenter/miniTextRelay.nhn?category=kbo&date=20201124&gameId=77771124OBNC02020" />
+                뭐넣지
               </Card.Body>
             </Card>
           </Col>
-          <Col sm={3} lg={2}>
-            <MainSideBar />
+          <Col xl={2}>
+            <MainSideBar className="mt-4" />
           </Col>
         </Row>
       </Container>

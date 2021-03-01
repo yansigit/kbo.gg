@@ -3,7 +3,11 @@ import {Card, Col, Row, Table} from "react-bootstrap";
 import {Line} from "react-chartjs-2";
 import DataStore from "./store";
 
-export class MainSideBar extends React.Component {
+interface classProp {
+    className?: string;
+}
+
+export class MainSideBar extends React.Component<classProp> {
     options = {
         scales: {
             yAxes: [
@@ -23,7 +27,7 @@ export class MainSideBar extends React.Component {
     render() {
         let bg_image = "/logo_ds.png";
 
-        return <div><Card className="rounded-0">
+        return <div><Card className={'rounded-0 ' + this.props.className}>
             <Card.Header>
                 두산 베어스 타자
             </Card.Header>
