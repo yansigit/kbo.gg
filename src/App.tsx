@@ -3,9 +3,23 @@ import './App.css';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import {MainHeader} from "./MainHeader";
 import {MainSideBar} from "./MainSideBar";
+import DataStore from "./store";
+import {Line} from "react-chartjs-2";
 
 function App() {
   useEffect(() => {})
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  }
 
   return (
     <div className="App">
@@ -34,11 +48,29 @@ function App() {
               </Card.Body>
             </Card>
 
-            <Card className="rounded-0 mt-4">
-              <Card.Body>
-                뭐넣지
-              </Card.Body>
-            </Card>
+            <Row>
+              <Col md="6">
+                <Card className="rounded-0 mt-4">
+                  <Card.Header className="bg-danger text-white">
+                    AWAY팀 승리확률
+                  </Card.Header>
+                  <Card.Body>
+                    <Line data={DataStore.data} options={options} />
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col md="6">
+                <Card className="rounded-0 mt-4">
+                  <Card.Header className="bg-primary text-white">
+                    HOME팀 승리확률
+                  </Card.Header>
+                  <Card.Body>
+                    <Line data={DataStore.data} options={options} />
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+
           </Col>
           <Col xl={2}>
             <MainSideBar className="mt-4" />

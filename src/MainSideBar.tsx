@@ -27,7 +27,7 @@ export class MainSideBar extends React.Component<classProp> {
     render() {
         let bg_image = "/logo_ds.png";
 
-        return <div><Card className={'rounded-0 ' + this.props.className}>
+        return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header>
                 두산 베어스 타자
             </Card.Header>
@@ -70,13 +70,5 @@ export class MainSideBar extends React.Component<classProp> {
                 </Table>
             </Card.Body>
         </Card>
-
-        <Card className="mt-4 rounded-0">
-            <Card.Body>
-                <Card.Text className={'font-weight-bold'}>승리 확률</Card.Text>
-                <Line data={DataStore.data} options={this.options}/>
-            </Card.Body>
-        </Card>
-        </div>
     }
 }
