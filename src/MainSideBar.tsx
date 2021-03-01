@@ -21,7 +21,7 @@ export class MainSideBar extends React.Component {
     }
 
     render() {
-        return <div><Card>
+        return <div><Card className="rounded-0">
             <Card.Header>
                 두산 베어스 타자
             </Card.Header>
@@ -62,11 +62,12 @@ export class MainSideBar extends React.Component {
             </Card.Body>
         </Card>
 
-            <Card className="mt-4">
-                <Card.Body>
-                    <Card.Text className={'font-weight-bold'}>승리 확률</Card.Text>
-                    <Line data={DataStore.data} options={this.options}/>
-                </Card.Body>
-            </Card></div>
+        <Card className="mt-4 rounded-0">
+            <Card.Body>
+                <Card.Text className={'font-weight-bold'}>승리 확률</Card.Text>
+                <Line data={DataStore.data} options={this.options}/>
+            </Card.Body>
+        </Card>
+        </div>
     }
 }
