@@ -6,7 +6,7 @@ class DataStore {
         labels: ['선수1', '2', '3', '4', '5', '6'],
         datasets: [
             {
-                label: '# of Votes',
+                label: '승리 확률',
                 data: [50, 65, 25, 30, 43, 80, 90, 95, 100],
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
