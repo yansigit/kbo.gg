@@ -1,3 +1,6 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+
 .App {
   text-align: center;
 }
@@ -9,6 +12,14 @@
 .card-header {
   background: white !important;
   font-weight: bold;
+
+  &.bg-danger {
+    background-color: $danger !important;
+  }
+
+  &.bg-primary {
+    background-color: $primary !important;
+  }
 }
 
 .card-body {

@@ -10,6 +10,12 @@
   background: white !important;
   font-weight: bold;
 }
+.card-header.bg-danger {
+  background-color: #dc3545 !important;
+}
+.card-header.bg-primary {
+  background-color: #007bff !important;
+}
 
 .card-body .row {
   margin-right: 0;
