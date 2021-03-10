@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-
+import Game from "./Game";
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Router>
+          <Switch>
+              <Route path='/' component={Game} exact />
+              <Route path='/game' component={Game} exact />
+              <Route path='/game/:id' component={Game} />
+          </Switch>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -5,9 +5,16 @@ import {MainHeader} from "./MainHeader";
 import {MainSideBar} from "./MainSideBar";
 import DataStore from "./store";
 import {Line} from "react-chartjs-2";
+import {RouteComponentProps} from "react-router-dom";
 
-function App() {
+interface params {
+  id ?: string
+}
+
+function Game({ match } : RouteComponentProps<params>) {
   useEffect(() => {})
+
+  const gameId = match.params.id ? match.params.id : "EMPTY";
 
   const options = {
     scales: {
@@ -24,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <MainHeader />
+      <div>GAME ID : {gameId}</div>
       <Container fluid>
         <Row>
           <Col xl={{span:2, order: 'first'}}>
@@ -36,12 +44,12 @@ function App() {
               </Card.Header>
               <Card.Body>
                 <Row>
-                  <Col>
+                  <Col md="6">
                     <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0" frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen/>
                   </Col>
-                  <Col>
+                  <Col md="6">
                     <iframe className="w-100" height="450px" frameBorder="0" src="https://sports.news.naver.com/gameCenter/miniTextRelay.nhn?category=kbo&date=20201124&gameId=77771124OBNC02020" />
                   </Col>
                 </Row>
@@ -76,7 +84,7 @@ function App() {
             <MainSideBar className="mt-4" />
           </Col>
         </Row>
-      </Container>
+      </Container>065
       <div className="footer bg-primary w-100 mt-4">
         <h4 className="text-white">KBO.GG</h4>
       </div>
@@ -84,4 +92,4 @@ function App() {
   );
 }
 
-export default App;
+export default Game;
