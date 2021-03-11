@@ -6,17 +6,14 @@ import {MainSideBar} from "./MainSideBar";
 import DataStore from "./store";
 import {Line} from "react-chartjs-2";
 import {RouteComponentProps} from "react-router-dom";
+import {CurrentPlayerInfo, GamePageParams} from "./interfaces/interfaces"
 
-interface params {
-  id ?: string
-}
-
-function Game({ match } : RouteComponentProps<params>) {
+function Game({ match } : RouteComponentProps<GamePageParams>) {
   useEffect(() => {})
 
-  const gameId = match.params.id ? match.params.id : "EMPTY";
+  const gameId = match.params.id ? match.params.id : "ID 없음";
 
-  const options = {
+  const graphOptions = {
     scales: {
       yAxes: [
         {
@@ -28,15 +25,40 @@ function Game({ match } : RouteComponentProps<params>) {
     },
   }
 
+  let awayCurrentPlayerInfo: CurrentPlayerInfo = {
+    teamName: '두산 베이스',
+    playerName: '최주환',
+    tasuk: 1,
+    tasu: 1,
+    anta: 1,
+    tajum: 1,
+    pisamjin: 1,
+    homerun: 1
+  }
+
+  let homeCurrentPlayerInfo: CurrentPlayerInfo = {
+    teamName: '삼성 라이온즈',
+    playerName: '구자욱',
+    tasuk: 1,
+    tasu: 1,
+    anta: 1,
+    tajum: 1,
+    pisamjin: 1,
+    homerun: 1
+  }
+
   return (
     <div className="App">
       <MainHeader />
+
       <div>GAME ID : {gameId}</div>
+
       <Container fluid>
         <Row>
           <Col xl={{span:2, order: 'first'}}>
-            <MainSideBar className="mt-4" />
+            <MainSideBar currentPlayer={awayCurrentPlayerInfo} className="mt-4" />
           </Col>
+
           <Col xl={{span: 8}} xs={{order: 'first'}}>
             <Card className="rounded-0 mt-4">
               <Card.Header>
@@ -55,7 +77,6 @@ function Game({ match } : RouteComponentProps<params>) {
                 </Row>
               </Card.Body>
             </Card>
-
             <Row>
               <Col md="6">
                 <Card className="rounded-0 mt-4">
@@ -63,7 +84,7 @@ function Game({ match } : RouteComponentProps<params>) {
                     AWAY팀 승리확률
                   </Card.Header>
                   <Card.Body>
-                    <Line data={DataStore.data} options={options} />
+                    <Line data={DataStore.data} options={graphOptions} />
                   </Card.Body>
                 </Card>
               </Col>
@@ -73,15 +94,15 @@ function Game({ match } : RouteComponentProps<params>) {
                     HOME팀 승리확률
                   </Card.Header>
                   <Card.Body>
-                    <Line data={DataStore.data} options={options} />
+                    <Line data={DataStore.data} options={graphOptions} />
                   </Card.Body>
                 </Card>
               </Col>
             </Row>
-
           </Col>
+
           <Col xl={2}>
-            <MainSideBar className="mt-4" />
+            <MainSideBar currentPlayer={homeCurrentPlayerInfo} className="mt-4" />
           </Col>
         </Row>
       </Container>065

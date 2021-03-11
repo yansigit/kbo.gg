@@ -2,12 +2,9 @@ import React from "react";
 import {Card, Col, Row, Table} from "react-bootstrap";
 import {Line} from "react-chartjs-2";
 import DataStore from "./store";
+import {SideBarProps} from "./interfaces/interfaces";
 
-interface classProp {
-    className?: string;
-}
-
-export class MainSideBar extends React.Component<classProp> {
+export class MainSideBar extends React.Component<SideBarProps> {
     options = {
         scales: {
             yAxes: [
@@ -29,7 +26,7 @@ export class MainSideBar extends React.Component<classProp> {
 
         return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header>
-                두산 베어스 타자
+                {this.props.currentPlayer.teamName} 타자
             </Card.Header>
             <Card.Body>
                 <Row>
@@ -38,7 +35,7 @@ export class MainSideBar extends React.Component<classProp> {
                              src="https://sports-phinf.pstatic.net/player/kbo/default/76267.png"/>
                     </Col>
                     <Col md={8}>
-                        <Card.Title as="p">최주환</Card.Title>
+                        <Card.Title as="p">{this.props.currentPlayer.playerName}</Card.Title>
                         <Card.Text>
                             테스트 테스트
                         </Card.Text>
@@ -50,21 +47,21 @@ export class MainSideBar extends React.Component<classProp> {
                     <tbody>
                     <tr>
                         <td>타석</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.tasuk}</td>
                         <td>타수</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.tasu}</td>
                     </tr>
                     <tr>
                         <td>안타</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.anta}</td>
                         <td>피삼진</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.pisamjin}</td>
                     </tr>
                     <tr>
                         <td>타점</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.tajum}</td>
                         <td>홈런</td>
-                        <td>1</td>
+                        <td>{this.props.currentPlayer.homerun}</td>
                     </tr>
                     </tbody>
                 </Table>
