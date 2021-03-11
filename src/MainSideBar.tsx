@@ -5,27 +5,23 @@ import DataStore from "./store";
 import {SideBarProps} from "./interfaces/interfaces";
 
 export class MainSideBar extends React.Component<SideBarProps> {
-    options = {
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
-                },
-            ],
-        },
-    }
+    private headerColor: string;
 
     constructor(props: any) {
         super(props);
+        this.headerColor = "text-light "
+        if (this.props.type === "away") {
+            this.headerColor += "bg-danger"
+        } else {
+            this.headerColor += "bg-primary"
+        }
     }
 
     render() {
         let bg_image = "/logo_ds.png";
 
         return <Card className={'rounded-0 ' + this.props.className}>
-            <Card.Header>
+            <Card.Header className={this.headerColor}>
                 {this.props.currentPlayer.teamName} 타자
             </Card.Header>
             <Card.Body>

@@ -16,4 +16,5 @@ export interface CurrentPlayerInfo {
 export interface SideBarProps {
     className?: string;
     currentPlayer: CurrentPlayerInfo;
+    type: string;
 }
