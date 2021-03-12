@@ -5,6 +5,7 @@ export interface GamePageParams {
 export interface CurrentPlayerInfo {
     teamName: string;
     playerName: string;
+    position: string;
     tasuk: number;
     tasu: number;
     anta: number;

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, Jumbotron, Row, Table, Button} from "react-bootstrap";
 import {MainHeader} from "./MainHeader";
 import {MainSideBar} from "./MainSideBar";
 import DataStore from "./store";
@@ -29,6 +29,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
   let awayCurrentPlayerInfo: CurrentPlayerInfo = {
     teamName: '두산 베어스',
     playerName: '박 폴라베어',
+    position: '타자',
     tasuk: 1,
     tasu: 1,
     anta: 1,
@@ -40,6 +41,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
   let homeCurrentPlayerInfo: CurrentPlayerInfo = {
     teamName: 'NC 다이노스',
     playerName: '김 티라노',
+    position: '투수',
     tasuk: 1,
     tasu: 1,
     anta: 1,
@@ -64,18 +66,37 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
                 <Card.Header>
                   실시간 경기
                 </Card.Header>
+                <Card.Body className="p-0">
+                  <Jumbotron id="game-big-panel" className="d-flex align-items-center justify-content-center rounded-0 m-0" fluid>
+                    <table className="d-inline-block">
+                      <tr>
+                        <th className="panel-team-name">{awayCurrentPlayerInfo.teamName}</th>
+                        <th className="panel-score" rowSpan={2}>2</th>
+                      </tr>
+                      <tr>
+                        <th className="panel-player-name">{awayCurrentPlayerInfo.position} {awayCurrentPlayerInfo.playerName}</th>
+                      </tr>
+                    </table>
+
+                    <Button variant="dark" className="d-inline-block mx-2" disabled>VS</Button>
+
+                    <table className="d-inline-block">
+                      <tr>
+                        <th className="panel-score" rowSpan={2}>3</th>
+                        <th className="panel-team-name">{homeCurrentPlayerInfo.teamName}</th>
+                      </tr>
+                      <tr>
+                        <th className="panel-player-name">{homeCurrentPlayerInfo.position} {homeCurrentPlayerInfo.playerName}</th>
+                      </tr>
+                    </table>
+                  </Jumbotron>
+                </Card.Body>
                 <Card.Body>
                   <Row>
-                    <Col md="6">
-                      <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0"
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen/>
-                    </Col>
-                    <Col md="6">
-                      <iframe className="w-100" height="450px" frameBorder="0"
-                              src="https://sports.news.naver.com/gameCenter/miniTextRelay.nhn?category=kbo&date=20201124&gameId=77771124OBNC02020"/>
-                    </Col>
+                    <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen/>
                   </Row>
                 </Card.Body>
               </Card>

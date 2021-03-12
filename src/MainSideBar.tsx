@@ -22,7 +22,7 @@ export class MainSideBar extends React.Component<SideBarProps> {
 
         return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header className={this.headerColor}>
-                {this.props.currentPlayer.teamName} 타자
+                {this.props.currentPlayer.teamName} {this.props.currentPlayer.position}
             </Card.Header>
             <Card.Body>
                 <Row>

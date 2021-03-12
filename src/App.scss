@@ -4,11 +4,50 @@
 .App {
   text-align: center;
   background-color: #dadada;
-  opacity: 0.8;
-  background-image:  linear-gradient(135deg, #c4c4c4 25%, transparent 25%), linear-gradient(225deg, #c4c4c4 25%, transparent 25%), linear-gradient(45deg, #c4c4c4 25%, transparent 25%), linear-gradient(315deg, #c4c4c4 25%, #dadada 25%);
-  background-position:  4px 0, 4px 0, 0 0, 0 0;
-  background-size: 4px 4px;
-  background-repeat: repeat;
+}
+
+#header-top-navbar {
+  div.nav-item {
+    margin-inline: 5px;
+    a.nav-link {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      color: #6faaac;
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+#game-big-panel {
+  font-family: "KOTRA_BOLD-Bold", serif;
+  background: rgb(180,58,58);
+  background: linear-gradient(90deg, rgba(180,58,58,1) 0%, rgba(0,0,0,1) 50%, rgba(75,69,252,1) 100%);
+
+  table {
+    th {
+      padding: 10px;
+      color: white;
+    }
+
+    th.panel-team-name {
+      font-weight: bold;
+      font-size: 30px;
+      padding-bottom: 0 !important;
+    }
+
+    th.panel-score {
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    th.panel-player-name {
+      padding-top: 0 !important;
+      font-family: "S-CoreDream-3Light", serif;
+    }
+  }
 }
 
 .card-header, .card-body {
