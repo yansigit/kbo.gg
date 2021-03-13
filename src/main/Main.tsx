@@ -1,7 +1,8 @@
 import React from "react";
 import {MainHeader} from "../components/MainHeader";
 import {Container, Jumbotron, InputGroup, FormControl, Button, Col, Row, ListGroup, Card} from "react-bootstrap";
-import './main.css';
+import MainFooter from "../components/MainFooter";
+import './main.scss';
 
 export class Main extends React.Component {
   render() {
@@ -36,13 +37,19 @@ export class Main extends React.Component {
                   <ListGroup.Item>테스트</ListGroup.Item>
                   <ListGroup.Item>테스트</ListGroup.Item>
                   <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
             <Col md="6">
               <Card>
-                <Card.Header className="font-weight-bold text-center">관련 뉴스</Card.Header>
+                <Card.Header className="font-weight-bold text-center">테스트</Card.Header>
                 <ListGroup variant="flush">
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
                   <ListGroup.Item>테스트</ListGroup.Item>
                   <ListGroup.Item>테스트</ListGroup.Item>
                   <ListGroup.Item>테스트</ListGroup.Item>
@@ -50,13 +57,38 @@ export class Main extends React.Component {
               </Card>
             </Col>
           </Row>
+
+          <Row className="mt-4">
+            <Col md="6">
+              <Card className="rounded-0">
+                <Card.Header className="font-weight-bold text-center">테스트</Card.Header>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+            <Col md="6">
+              <Card>
+                <Card.Header className="font-weight-bold text-center">테스트</Card.Header>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          </Row>
+
         </Container>
 
-        <footer className="footer bg-dark w-100 mt-4">
-          <Container fluid>
-            <h4 className="text-white">KBO.GG</h4>
-          </Container>
-        </footer>
+        <MainFooter />
       </div>
     );
   }

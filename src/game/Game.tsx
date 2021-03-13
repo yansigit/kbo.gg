@@ -6,9 +6,11 @@ import DataStore from "../store";
 import {Line} from "react-chartjs-2";
 import {RouteComponentProps} from "react-router-dom";
 import {CurrentPlayerInfo, GamePageParams} from "../interfaces/interfaces"
+import MainFooter from "../components/MainFooter";
 
 // @ts-ignore
-import './game.css';
+import './game.scss';
+
 
 function Game({match}: RouteComponentProps<GamePageParams>) {
   useEffect(() => {
@@ -133,11 +135,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
         </Container>
       </main>
 
-      <footer className="footer bg-dark w-100 mt-4">
-        <Container fluid>
-          <h4 className="text-white">KBO.GG</h4>
-        </Container>
-      </footer>
+      <MainFooter />
     </div>
   );
 }

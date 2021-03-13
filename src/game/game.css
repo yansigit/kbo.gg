@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/* 범용 */
+.bg-dark-transparent {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.notification-bar {
+  background: mediumseagreen;
+  color: white;
+}
+.notification-bar h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+}
+.notification-bar a {
+  font-size: 1rem;
+  color: white;
+}
+
+.App {
+  text-align: center;
+  background-color: #dadada;
+}
+
+#header-top-navbar div.nav-item {
+  margin-inline: 5px;
+}
+#header-top-navbar div.nav-item a.nav-link {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: #6faaac;
+}
+#header-top-navbar div.nav-item a.nav-link svg {
+  margin-right: 5px;
+}
+
+/* Game */
+.game-big-panel {
+  font-family: "KOTRA_BOLD-Bold", serif;
+  background: #b43a3a;
+  background: linear-gradient(90deg, #b43a3a 0%, black 50%, #4b45fc 100%);
+}
+.game-big-panel table th {
+  padding: 10px;
+  color: white;
+}
+.game-big-panel table th.panel-team-name {
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 0 !important;
+}
+.game-big-panel table th.panel-score {
+  font-size: 60px;
+  font-weight: bold;
+}
+.game-big-panel table th.panel-player-name {
+  padding-top: 0 !important;
+  font-family: "S-CoreDream-3Light", serif;
+}
+
+.game-card .card-header, .game-card .card-body {
+  padding: 5px !important;
+}
+.game-card .card-header {
+  background: white !important;
+  font-weight: bold;
+}
+.game-card .card-header.bg-danger {
+  background-color: #dc3545 !important;
+}
+.game-card .card-header.bg-primary {
+  background-color: #007bff !important;
+}
+.game-card .card-body .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.game-card .card-body div[class*=col] {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/*# sourceMappingURL=game.css.map */

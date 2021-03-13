@@ -6,7 +6,7 @@ import Game from "./game/Game";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Main} from "./main/Main";
 
-import './index.css';
+import './index.scss';
 
 
 ReactDOM.render(
