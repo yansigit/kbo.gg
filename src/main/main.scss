@@ -1,0 +1,17 @@
+@import '../app';
+@import '../../node_modules/bootstrap/scss/mixins/_breakpoints';
+
+/* Main */
+#main-search-jumbotron {
+  background-image: url("../res/main-search-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  @include media-breakpoint-up(lg) {
+    padding-inline: 30em;
+  }
+  @include media-breakpoint-up(sm) {
+    padding-inline: 10em;
+  }
+}

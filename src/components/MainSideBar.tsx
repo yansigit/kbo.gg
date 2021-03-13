@@ -1,8 +1,8 @@
 import React from "react";
 import {Card, Col, Row, Table} from "react-bootstrap";
 import {Line} from "react-chartjs-2";
-import DataStore from "./store";
-import {SideBarProps} from "./interfaces/interfaces";
+import DataStore from "../store";
+import {SideBarProps} from "../interfaces/interfaces";
 
 export class MainSideBar extends React.Component<SideBarProps> {
     private headerColor: string;

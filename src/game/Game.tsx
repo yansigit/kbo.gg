@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
-import './App.css';
 import {Card, Col, Container, Jumbotron, Row, Table, Button} from "react-bootstrap";
-import {MainHeader} from "./MainHeader";
-import {MainSideBar} from "./MainSideBar";
-import DataStore from "./store";
+import {MainHeader} from "../components/MainHeader";
+import {MainSideBar} from "../components/MainSideBar";
+import DataStore from "../store";
 import {Line} from "react-chartjs-2";
 import {RouteComponentProps} from "react-router-dom";
-import {CurrentPlayerInfo, GamePageParams} from "./interfaces/interfaces"
+import {CurrentPlayerInfo, GamePageParams} from "../interfaces/interfaces"
+
+import './game.css';
 
 function Game({match}: RouteComponentProps<GamePageParams>) {
   useEffect(() => {

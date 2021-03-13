@@ -1,0 +1,43 @@
+@import '../node_modules/bootstrap/scss/_functions';
+@import '../node_modules/bootstrap/scss/_variables';
+
+/* 범용 */
+.bg-dark-transparent {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.notification-bar {
+  background: mediumseagreen;
+  color: white;
+  h5 {
+    font-size: $font-size-base;
+    font-weight: bold;
+    display: inline;
+  }
+  a {
+    font-size: $font-size-base;
+    color: white;
+  }
+}
+
+.App {
+  text-align: center;
+  background-color: #dadada;
+}
+
+#header-top-navbar {
+  div.nav-item {
+    margin-inline: 5px;
+    a.nav-link {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      color: #6faaac;
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+

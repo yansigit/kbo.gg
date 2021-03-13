@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import Game from "./Game";
+import Game from "./game/Game";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {Main} from "./main/Main";
+
+import './index.css';
 
 
 ReactDOM.render(
   <React.StrictMode>
       <Router>
           <Switch>
-              <Route path='/' component={Game} exact />
+              <Route path='/' component={Main} exact />
               <Route path='/game' component={Game} exact />
               <Route path='/game/:id' component={Game} />
           </Switch>
