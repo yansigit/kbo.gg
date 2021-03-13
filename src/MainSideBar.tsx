@@ -18,27 +18,22 @@ export class MainSideBar extends React.Component<SideBarProps> {
     }
 
     render() {
-        let bg_image = "/logo_ds.png";
-
         return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header className={this.headerColor}>
                 {this.props.currentPlayer.teamName} {this.props.currentPlayer.position}
             </Card.Header>
             <Card.Body>
-                <Row>
-                    <Col md={4}>
-                        <img width="50px" className="border border-dark"
-                             src="https://sports-phinf.pstatic.net/player/kbo/default/76267.png"/>
+                <Row className="pb-2 text-left">
+                    <Col sm={5} className="pl-0 h-100">
+                        <img src="https://via.placeholder.com/150" alt="선수 사진" className="w-100 h-100" style={{maxHeight: "150px", maxWidth: "150px"}}/>
                     </Col>
-                    <Col md={8}>
-                        <Card.Title as="p">{this.props.currentPlayer.playerName}</Card.Title>
-                        <Card.Text>
-                            테스트 테스트
-                        </Card.Text>
+                    <Col sm={7}>
+                        <table className="w-100 h-100">
+                            <tr><td className="text-center font-weight-bold">{this.props.currentPlayer.playerName}</td></tr>
+                            <tr><td className="text-center">테스트</td></tr>
+                        </table>
                     </Col>
                 </Row>
-            </Card.Body>
-            <Card.Body>
                 <Table striped bordered hover size="sm" className="m-0">
                     <tbody>
                     <tr>

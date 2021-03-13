@@ -1,7 +1,6 @@
 import React from "react";
 import {Container, Jumbotron, Nav, Navbar, NavDropdown, Figure} from "react-bootstrap";
 import kbo_logo from "./res/kbo-logo-itself.png"
-import holder from "holderjs"
 import {IoHome, IoPlayForward, IoPodiumSharp} from 'react-icons/io5';
 
 export class MainHeader extends React.Component {
@@ -9,10 +8,6 @@ export class MainHeader extends React.Component {
 
     constructor(props: any) {
         super(props);
-    }
-
-    componentDidMount() {
-        holder.run({images: this.image})
     }
 
     render() {
@@ -35,8 +30,8 @@ export class MainHeader extends React.Component {
                     <Container>
                         <div className="d-flex align-items-center">
                             <img src={kbo_logo} width="30" height="30" alt="" />
-                            <h3 className="text-light ml-2 font-weight-bold">KBO.GG</h3>
-                            <h3 className="text-light ml-2">크보지지</h3>
+                            <h3 className="text-light m-0 ml-2 font-weight-bold">KBO.GG</h3>
+                            <h3 className="text-light m-0 ml-2">크보지지</h3>
                         </div>
                     </Container>
                 </Jumbotron>

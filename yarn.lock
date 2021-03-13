@@ -1744,11 +1744,6 @@
   resolved "https://registry.npmjs.org/@types/history/-/history-4.7.8.tgz"
   integrity sha512-S78QIYirQcUoo6UJZx9CSP0O2ix9IaeAXwQi26Rhr/+mg7qqPy8TzaxHSUut7eGjL8WmLccT7/MXf304WjqHcA==
 
-"@types/holderjs@^2.9.1":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@types/holderjs/-/holderjs-2.9.1.tgz#b8b6c93bf4ee3118a0df90e18d2b3a0cda42181f"
-  integrity sha512-6Ag2XceNq3bKDfNdLmjzozfabvAkhxfmi6pxIaZFL5fXxoITLcc5CNe1EFkF1UoBQpRDwqPX3jBUTG8Jt9fNBw==
-
 "@types/html-minifier-terser@^5.0.0":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz"
@@ -5571,11 +5566,6 @@ hoist-non-react-statics@^3.1.0:
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
-
-holderjs@^2.9.9:
-  version "2.9.9"
-  resolved "https://registry.yarnpkg.com/holderjs/-/holderjs-2.9.9.tgz#e0f65439ac658c4188abcea3c3b0a327d0ebb67d"
-  integrity sha512-ceWPz1MrR3dxOoZXiom+G48+l1VPG3TcjBw9fq5iwCiZAMvYX8Aia13GOxT7DoV/AcSyTH7Vvr11ygjZP9qn4w==
 
 hoopy@^0.1.4:
   version "0.1.4"
