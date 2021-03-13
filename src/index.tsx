@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import Game from "./game/Game";
+import Game from "./pages/game/Game";
+import History from "./pages/history/History";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Main} from "./main/Main";
+import Main from "./pages/main/Main";
 
 import './index.scss';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
               <Route path='/' component={Main} exact />
               <Route path='/game' component={Game} exact />
               <Route path='/game/:id' component={Game} />
+              <Route path='/history' component={History} />
           </Switch>
       </Router>
   </React.StrictMode>,

@@ -1,9 +1,9 @@
-@import '../app';
-@import '../../node_modules/bootstrap/scss/mixins/_breakpoints';
+@import '../../app';
+@import '../../../node_modules/bootstrap/scss/mixins/breakpoints';
 
 /* Main */
 #main-search-jumbotron {
-  background-image: url("../res/main-search-bg.jpg");
+  background-image: url("../../res/main-search-bg.jpg");
   background-size: cover;
   background-position: center;
   padding-top: 5em;

@@ -22,7 +22,7 @@ export class MainHeader extends React.Component {
                             <Nav.Link href="/game"><IoPlayForward size="20" color="#fff" />현재 시즌</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="link-2"><IoPodiumSharp size="20" color="#fff" />과거 내역</Nav.Link>
+                            <Nav.Link href="/history"><IoPodiumSharp size="20" color="#fff" />과거 내역</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar>
@@ -45,7 +45,7 @@ export class MainHeader extends React.Component {
                                 <Nav.Link href="/game">현재 시즌</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="link-2">과거 내역</Nav.Link>
+                                <Nav.Link href="/history">과거 내역</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link eventKey="disabled" disabled>

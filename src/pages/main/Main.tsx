@@ -1,10 +1,10 @@
 import React from "react";
-import {MainHeader} from "../components/MainHeader";
+import {MainHeader} from "../../components/MainHeader";
 import {Container, Jumbotron, InputGroup, FormControl, Button, Col, Row, ListGroup, Card} from "react-bootstrap";
-import MainFooter from "../components/MainFooter";
+import MainFooter from "../../components/MainFooter";
 import './main.scss';
 
-export class Main extends React.Component {
+export default class Main extends React.Component {
   render() {
     return (
       <div className="app">

@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {Card, Col, Container, Jumbotron, Row, Table, Button} from "react-bootstrap";
-import {MainHeader} from "../components/MainHeader";
-import {MainSideBar} from "../components/MainSideBar";
-import DataStore from "../store";
+import {MainHeader} from "../../components/MainHeader";
+import {MainSideBar} from "../../components/MainSideBar";
+import DataStore from "../../store";
 import {Line} from "react-chartjs-2";
 import {RouteComponentProps} from "react-router-dom";
-import {CurrentPlayerInfo, GamePageParams} from "../interfaces/interfaces"
-import MainFooter from "../components/MainFooter";
+import {CurrentPlayerInfo, GamePageParams} from "../../interfaces/interfaces"
+import MainFooter from "../../components/MainFooter";
 
 // @ts-ignore
 import './game.scss';
