@@ -2,7 +2,7 @@
 
 /* Game */
 
-#game-big-panel {
+.game-big-panel {
   font-family: "KOTRA_BOLD-Bold", serif;
   background: rgb(180,58,58);
   background: linear-gradient(90deg, rgba(180,58,58,1) 0%, rgba(0,0,0,1) 50%, rgba(75,69,252,1) 100%);
@@ -31,30 +31,33 @@
   }
 }
 
-.card-header, .card-body {
-  padding: 5px !important;
-}
-
-.card-header {
-  background: white !important;
-  font-weight: bold;
-
-  &.bg-danger {
-    background-color: $danger !important;
+.game-card {
+  .card-header, .card-body {
+    padding: 5px !important;
   }
 
-  &.bg-primary {
-    background-color: $primary !important;
-  }
-}
+  .card-header {
+    background: white !important;
+    font-weight: bold;
 
-.card-body {
-  .row {
-    margin-right: 0;
-    margin-left: 0;
+    &.bg-danger {
+      background-color: $danger !important;
+    }
+
+    &.bg-primary {
+      background-color: $primary !important;
+    }
   }
-  div[class*="col"] {
-    padding-left: 5px;
-    padding-right: 5px;
+
+  .card-body {
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    div[class*="col"] {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 }

@@ -7,6 +7,7 @@ import {Line} from "react-chartjs-2";
 import {RouteComponentProps} from "react-router-dom";
 import {CurrentPlayerInfo, GamePageParams} from "../interfaces/interfaces"
 
+// @ts-ignore
 import './game.css';
 
 function Game({match}: RouteComponentProps<GamePageParams>) {
@@ -59,16 +60,16 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
         <Container fluid>
           <Row>
             <Col xl={{span: 2, order: 'first'}}>
-              <MainSideBar type="away" currentPlayer={awayCurrentPlayerInfo} className="mt-4"/>
+              <MainSideBar type="away" currentPlayer={awayCurrentPlayerInfo} className="mt-4 game-card"/>
             </Col>
 
             <Col xl={{span: 8}} xs={{order: 'first'}}>
-              <Card className="rounded-0 mt-4">
+              <Card className="rounded-0 mt-4 game-card">
                 <Card.Header>
                   실시간 경기
                 </Card.Header>
                 <Card.Body className="p-0">
-                  <Jumbotron id="game-big-panel" className="d-flex align-items-center justify-content-center rounded-0 m-0" fluid>
+                  <Jumbotron className="d-flex align-items-center justify-content-center rounded-0 m-0 game-big-panel" fluid>
                     <table className="d-inline-block">
                       <tr>
                         <th className="panel-team-name">{awayCurrentPlayerInfo.teamName}</th>
@@ -103,7 +104,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
               </Card>
               <Row>
                 <Col md="6">
-                  <Card className="rounded-0 mt-4">
+                  <Card className="rounded-0 mt-4 game-card">
                     <Card.Header className="bg-danger text-white">
                       {awayCurrentPlayerInfo.teamName} 승리확률
                     </Card.Header>
@@ -113,7 +114,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
                   </Card>
                 </Col>
                 <Col md="6">
-                  <Card className="rounded-0 mt-4">
+                  <Card className="rounded-0 mt-4 game-card">
                     <Card.Header className="bg-primary text-white">
                       {homeCurrentPlayerInfo.teamName} 승리확률
                     </Card.Header>
@@ -126,7 +127,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
             </Col>
 
             <Col xl={2}>
-              <MainSideBar type="home" currentPlayer={homeCurrentPlayerInfo} className="mt-4"/>
+              <MainSideBar type="home" currentPlayer={homeCurrentPlayerInfo} className="mt-4 game-card"/>
             </Col>
           </Row>
         </Container>

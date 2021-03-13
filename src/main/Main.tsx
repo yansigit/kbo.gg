@@ -31,21 +31,21 @@ export class Main extends React.Component {
           <Row>
             <Col md="6">
               <Card className="rounded-0">
-                <Card.Header>Featured</Card.Header>
+                <Card.Header className="font-weight-bold text-center">최근 경기 내역</Card.Header>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                  <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                  <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
             <Col md="6">
               <Card>
-                <Card.Header>Featured</Card.Header>
+                <Card.Header className="font-weight-bold text-center">관련 뉴스</Card.Header>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                  <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                  <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
+                  <ListGroup.Item>테스트</ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
