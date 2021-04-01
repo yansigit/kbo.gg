@@ -1,6 +1,6 @@
 import React from "react";
 import {MainHeader} from "../../components/MainHeader";
-import {Container, Jumbotron, InputGroup, FormControl, Button, Col, Row, ListGroup, Card} from "react-bootstrap";
+import {Button, Card, Col, Container, FormControl, InputGroup, Jumbotron, ListGroup, Row} from "react-bootstrap";
 import MainFooter from "../../components/MainFooter";
 import './main.scss';
 
@@ -15,12 +15,12 @@ export default class Main extends React.Component {
         </div>
 
         <Jumbotron id="main-search-jumbotron" className="rounded-0 text-center" fluid>
-          <img src="https://via.placeholder.com/400x100" className="mb-3" />
+          <img src="//via.placeholder.com/400x100" className="mb-3"/>
           <InputGroup>
             <FormControl
-              placeholder="게임 검색"
-              aria-label="게임 검색"
-              aria-describedby="basic-addon2"
+                placeholder="게임 검색"
+                aria-label="게임 검색"
+                aria-describedby="basic-addon2"
             />
             <InputGroup.Append>
               <Button variant="warning" className="font-weight-bold">검색</Button>

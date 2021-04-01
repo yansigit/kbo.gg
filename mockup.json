@@ -1,0 +1,43 @@
+{
+  "gameId": "2021XXXXTEST",
+  "awayTeam": {
+    "score": 0,
+    "teamName": "",
+    "currentPlayer": "",
+    "currentPlayerPosition": "",
+    "graphData": {
+      "x": [
+        "Kim",
+        "Park",
+        "Choi",
+        "Yoon"
+      ],
+      "y": [
+        50,
+        80,
+        70,
+        44
+      ]
+    }
+  },
+  "homeTeam": {
+    "score": 0,
+    "teamName": "",
+    "currentPlayer": "",
+    "currentPlayerPosition": "",
+    "graphData": {
+      "x": [
+        "Kim",
+        "Park",
+        "Choi",
+        "Yoon"
+      ],
+      "y": [
+        50,
+        80,
+        70,
+        44
+      ]
+    }
+  }
+}

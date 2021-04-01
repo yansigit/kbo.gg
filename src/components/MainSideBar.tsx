@@ -1,7 +1,5 @@
 import React from "react";
-import {Card, Col, Row, Table} from "react-bootstrap";
-import {Line} from "react-chartjs-2";
-import DataStore from "../store";
+import {Card, Col, Row} from "react-bootstrap";
 import {SideBarProps} from "../interfaces/interfaces";
 
 export class MainSideBar extends React.Component<SideBarProps> {
@@ -23,39 +21,44 @@ export class MainSideBar extends React.Component<SideBarProps> {
                 {this.props.currentPlayer.teamName} {this.props.currentPlayer.position}
             </Card.Header>
             <Card.Body>
-                <Row className="pb-2 text-left">
+                <Row className="text-left">
                     <Col sm={5} className="pl-0 h-100">
-                        <img src="https://via.placeholder.com/150" alt="선수 사진" className="w-100 h-100" style={{maxHeight: "150px", maxWidth: "150px"}}/>
+                        <img src="//via.placeholder.com/150" alt="선수 사진" className="w-100 h-100"
+                             style={{maxHeight: "150px", maxWidth: "150px"}}/>
                     </Col>
                     <Col sm={7}>
                         <table className="w-100 h-100">
-                            <tr><td className="text-center font-weight-bold">{this.props.currentPlayer.playerName}</td></tr>
-                            <tr><td className="text-center">테스트</td></tr>
+                            <tr>
+                                <td className="text-center font-weight-bold">{this.props.currentPlayer.playerName}</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">테스트</td>
+                            </tr>
                         </table>
                     </Col>
                 </Row>
-                <Table striped bordered hover size="sm" className="m-0">
-                    <tbody>
-                    <tr>
-                        <td>타석</td>
-                        <td>{this.props.currentPlayer.tasuk}</td>
-                        <td>타수</td>
-                        <td>{this.props.currentPlayer.tasu}</td>
-                    </tr>
-                    <tr>
-                        <td>안타</td>
-                        <td>{this.props.currentPlayer.anta}</td>
-                        <td>피삼진</td>
-                        <td>{this.props.currentPlayer.pisamjin}</td>
-                    </tr>
-                    <tr>
-                        <td>타점</td>
-                        <td>{this.props.currentPlayer.tajum}</td>
-                        <td>홈런</td>
-                        <td>{this.props.currentPlayer.homerun}</td>
-                    </tr>
-                    </tbody>
-                </Table>
+                {/*<Table striped bordered hover size="sm" className="m-0">*/}
+                {/*    <tbody>*/}
+                {/*    <tr>*/}
+                {/*        <td>타석</td>*/}
+                {/*        <td>{this.props.currentPlayer.tasuk}</td>*/}
+                {/*        <td>타수</td>*/}
+                {/*        <td>{this.props.currentPlayer.tasu}</td>*/}
+                {/*    </tr>*/}
+                {/*    <tr>*/}
+                {/*        <td>안타</td>*/}
+                {/*        <td>{this.props.currentPlayer.anta}</td>*/}
+                {/*        <td>피삼진</td>*/}
+                {/*        <td>{this.props.currentPlayer.pisamjin}</td>*/}
+                {/*    </tr>*/}
+                {/*    <tr>*/}
+                {/*        <td>타점</td>*/}
+                {/*        <td>{this.props.currentPlayer.tajum}</td>*/}
+                {/*        <td>홈런</td>*/}
+                {/*        <td>{this.props.currentPlayer.homerun}</td>*/}
+                {/*    </tr>*/}
+                {/*    </tbody>*/}
+                {/*</Table>*/}
             </Card.Body>
         </Card>
     }
