@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Card, Col, Container, Jumbotron, Row, Table, Button} from "react-bootstrap";
+import React from 'react';
+import {Button, Card, Col, Container, Jumbotron, Row} from "react-bootstrap";
 import {MainHeader} from "../../components/MainHeader";
 import {MainSideBar} from "../../components/MainSideBar";
 import DataStore from "../../store";
@@ -13,8 +13,6 @@ import './game.scss';
 
 
 function Game({match}: RouteComponentProps<GamePageParams>) {
-  useEffect(() => {
-  })
 
   const gameId = match.params.id ? match.params.id : "ID 없음";
 
@@ -33,25 +31,13 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
   let awayCurrentPlayerInfo: CurrentPlayerInfo = {
     teamName: '두산 베어스',
     playerName: '박 폴라베어',
-    position: '타자',
-    tasuk: 1,
-    tasu: 1,
-    anta: 1,
-    tajum: 1,
-    pisamjin: 1,
-    homerun: 1
+    position: '타자'
   }
 
   let homeCurrentPlayerInfo: CurrentPlayerInfo = {
     teamName: 'NC 다이노스',
     playerName: '김 티라노',
-    position: '투수',
-    tasuk: 1,
-    tasu: 1,
-    anta: 1,
-    tajum: 1,
-    pisamjin: 1,
-    homerun: 1
+    position: '투수'
   }
 
   return (
@@ -104,6 +90,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
                   </Row>
                 </Card.Body>
               </Card>
+              <Button type="button" onClick={() => DataStore.update("2021HCMZGII7073")}/>
               <Row>
                 <Col md="6">
                   <Card className="rounded-0 mt-4 game-card">
@@ -111,7 +98,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
                       {awayCurrentPlayerInfo.teamName} 승리확률
                     </Card.Header>
                     <Card.Body>
-                      <Line data={DataStore.data} options={graphOptions}/>
+                      <Line data={DataStore.awayTeamChartData} options={graphOptions}/>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -121,7 +108,7 @@ function Game({match}: RouteComponentProps<GamePageParams>) {
                       {homeCurrentPlayerInfo.teamName} 승리확률
                     </Card.Header>
                     <Card.Body>
-                      <Line data={DataStore.data} options={graphOptions}/>
+                      <Line data={DataStore.homeTeamChartData} options={graphOptions}/>
                     </Card.Body>
                   </Card>
                 </Col>

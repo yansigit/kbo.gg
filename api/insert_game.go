@@ -1,39 +1,65 @@
 package handler
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"kbogg.imyoon.tech/lib"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 )
 
-type Game struct {
-	// DefaultModel adds _id, created_at and updated_at fields to the Model
-	mgm.DefaultModel `bson:",inline"`
-	GameId           string `json:"gameId" bson:"gameId"`
-	AwayTeam         Team   `json:"awayTeam" bson:"awayTeam"`
-	HomeTeam         Team   `json:"homeTeam" bson:"homeTeam"`
+var letters = []rune("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+func randSeq(n int) string {
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
+	}
+	return string(b)
 }
 
-type Team struct {
-	Score                 int    `json:"score" bson:"score"`
-	TeamName              string `json:"team_name" bson:"team_name"`
-	CurrentPlayer         string `json:"current_player" bson:"current_player"`
-	CurrentPlayerPosition string `json:"current_player_position" bson:"current_player_position"`
-	GraphData             Graph  `json:"graph_data" bson:"graph_data"`
+var korLetters = []rune("임성요백상준염조장취효민재유강만적추임윤연지")
+
+func randName(n int) string {
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = korLetters[rand.Intn(len(korLetters))]
+	}
+	return string(b)
 }
 
-type Graph struct {
-	X []string `json:"x" bson:"x"`
-	Y []int    `json:"y" bson:"y"`
-}
-
-func createMockup(gameId string, awayName string, homeName string) *Game {
-	return &Game{
-		GameId:   gameId,
-		AwayTeam: Team{TeamName: awayName},
-		HomeTeam: Team{TeamName: homeName},
+func createMockup() *lib.Game {
+	positions := []string{"투수", "타자"}
+	firstPositionIndex := rand.Intn(1)
+	nextPositionIndex := firstPositionIndex ^ 1
+	gameId := "2021" + randSeq(7) + strconv.Itoa(rand.Intn(9999))
+	return &lib.Game{
+		GameId: gameId,
+		AwayTeam: lib.Team{
+			Score:                 rand.Intn(20),
+			TeamName:              randSeq(2) + " " + randSeq(5),
+			CurrentPlayer:         randName(3),
+			CurrentPlayerPosition: positions[firstPositionIndex],
+			GraphData: lib.Graph{
+				X: []string{randName(3), randName(3), randName(3), randName(3), randName(3), randName(3), randName(3)},
+				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100)},
+			},
+		},
+		HomeTeam: lib.Team{
+			Score:                 rand.Intn(20),
+			TeamName:              randSeq(2) + " " + randSeq(6),
+			CurrentPlayer:         randName(3),
+			CurrentPlayerPosition: positions[nextPositionIndex],
+			GraphData: lib.Graph{
+				X: []string{randName(3), randName(3), randName(3), randName(3), randName(3), randName(3), randName(3)},
+				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100)},
+			},
+		},
 	}
 }
 
@@ -43,19 +69,19 @@ func init() {
 		log.Println(err)
 		log.Fatal("몽고디비 연결에 문제가 있습니다")
 	}
+	rand.Seed(time.Now().UnixNano())
 }
 
 func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	w.Header().Set("Content-Type", "application/json")
 
 	err := r.ParseForm()
 	if err != nil {
-		log.Fatal("POST 파라미터 분석에 문제가 있습니다")
+		log.Fatal("파라미터 분석에 문제가 있습니다")
 	}
-	params := r.Form
 
-	game := createMockup("GAMEIDXXXXX", params.Get("away_team"), params.Get("home_team"))
-	fmt.Fprint(w, game)
+	game := createMockup()
 
 	err = mgm.Coll(game).Create(game)
 	if err != nil {
@@ -63,4 +89,6 @@ func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("DOC 삽입에 문제가 있습니다")
 	}
 
+	jsonGame, err := json.Marshal(game)
+	fmt.Fprint(w, string(jsonGame))
 }
