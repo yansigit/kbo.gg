@@ -8,7 +8,7 @@ import {CurrentPlayerInfo, GamePageParams} from "../../interfaces/interfaces"
 import MainFooter from "../../components/MainFooter";
 import {useRecoilState} from "recoil";
 import {gameDataState} from "../../states/states";
-import {postData, randomString} from "../../lib/functions";
+import {postData, randomString, useInterval} from "../../lib/functions";
 
 import './game.scss';
 
@@ -29,9 +29,9 @@ function Game(props: RouteComponentProps<GamePageParams>) {
 
   updateGameData()
 
-  // useInterval(() => {
-  //   updateGameData()
-  // }, 8 * 1000);
+  useInterval(() => {
+    updateGameData()
+  }, 8 * 1000);
 
   const graphOptions = {
     scales: {
