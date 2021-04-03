@@ -12,6 +12,15 @@ export default function postData(url = '', data = {}) {
         redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
         body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-        .then(response => response.json()); // parses JSON response into native JavaScript objects
+    }).then(response => response.json()); // parses JSON response into native JavaScript objects
+}
+
+export function randomString(length: number) {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }

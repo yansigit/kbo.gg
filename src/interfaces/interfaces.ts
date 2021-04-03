@@ -14,7 +14,7 @@ export interface SideBarProps {
     type: string;
 }
 
-export interface gameData {
+export interface GameData {
     id?: any,
     created_at?: any,
     updated_at?: any,
