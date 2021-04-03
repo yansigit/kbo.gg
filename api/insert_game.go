@@ -23,7 +23,16 @@ func randSeq(n int) string {
 	return string(b)
 }
 
-var korLetters = []rune("임성요백상준염조장취효민재유강만적추임윤연지")
+func init() {
+	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
+	if err != nil {
+		log.Println(err)
+		log.Fatal("몽고디비 연결에 문제가 있습니다")
+	}
+	rand.Seed(time.Now().UnixNano())
+}
+
+var korLetters = []rune("임성요백상준염조장취효민재유강만적추임윤연지상조석")
 
 func randName(n int) string {
 	b := make([]rune, n)
@@ -46,8 +55,8 @@ func createMockup() *lib.Game {
 			CurrentPlayer:         randName(3),
 			CurrentPlayerPosition: positions[firstPositionIndex],
 			GraphData: lib.Graph{
-				X: []string{randName(3), randName(3), randName(3), randName(3), randName(3), randName(3), randName(3)},
-				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100)},
+				X: []string{randName(3), randName(3), randName(3)},
+				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100)},
 			},
 		},
 		HomeTeam: lib.Team{
@@ -56,20 +65,11 @@ func createMockup() *lib.Game {
 			CurrentPlayer:         randName(3),
 			CurrentPlayerPosition: positions[nextPositionIndex],
 			GraphData: lib.Graph{
-				X: []string{randName(3), randName(3), randName(3), randName(3), randName(3), randName(3), randName(3)},
-				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100), rand.Intn(100)},
+				X: []string{randName(3), randName(3), randName(3)},
+				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100)},
 			},
 		},
 	}
-}
-
-func init() {
-	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
-	if err != nil {
-		log.Println(err)
-		log.Fatal("몽고디비 연결에 문제가 있습니다")
-	}
-	rand.Seed(time.Now().UnixNano())
 }
 
 func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
@@ -91,4 +91,13 @@ func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
 
 	jsonGame, err := json.Marshal(game)
 	fmt.Fprint(w, string(jsonGame))
+
+	_, client, _, err := mgm.DefaultConfigs()
+	if err != nil {
+		panic(err)
+	}
+	err = client.Disconnect(mgm.Ctx())
+	if err != nil {
+		log.Fatal("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
+	}
 }

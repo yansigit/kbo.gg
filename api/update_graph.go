@@ -68,4 +68,13 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 
 	jsonBytes, err := json.Marshal(returnValue)
 	fmt.Fprint(w, string(jsonBytes))
+
+	_, client, _, err := mgm.DefaultConfigs()
+	if err != nil {
+		panic(err)
+	}
+	err = client.Disconnect(mgm.Ctx())
+	if err != nil {
+		log.Fatal("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
+	}
 }

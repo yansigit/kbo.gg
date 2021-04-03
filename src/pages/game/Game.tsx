@@ -105,7 +105,7 @@ function Game(props: RouteComponentProps<GamePageParams>) {
                       <table className="d-inline-block">
                         <tr>
                           <th className="panel-team-name">{awayCurrentPlayerInfo.teamName}</th>
-                          <th className="panel-score" rowSpan={2}>2</th>
+                          <th className="panel-score" rowSpan={2}>{gameData.awayTeam.score}</th>
                         </tr>
                         <tr>
                           <th className="panel-player-name">{awayCurrentPlayerInfo.position} {awayCurrentPlayerInfo.playerName}</th>
@@ -116,7 +116,7 @@ function Game(props: RouteComponentProps<GamePageParams>) {
 
                       <table className="d-inline-block">
                         <tr>
-                          <th className="panel-score" rowSpan={2}>3</th>
+                          <th className="panel-score" rowSpan={2}>{gameData.homeTeam.score}</th>
                           <th className="panel-team-name">{homeCurrentPlayerInfo.teamName}</th>
                         </tr>
                         <tr>
@@ -125,14 +125,14 @@ function Game(props: RouteComponentProps<GamePageParams>) {
                       </table>
                     </Jumbotron>
                   </Card.Body>
-                  <Card.Body>
-                    <Row>
-                      <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0"
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen/>
-                    </Row>
-                  </Card.Body>
+                  {/*<Card.Body>*/}
+                  {/*  <Row>*/}
+                  {/*    <iframe className="w-100" height="450px" src="https://www.youtube.com/embed/PwNXY5zeoc0"*/}
+                  {/*            frameBorder="0"*/}
+                  {/*            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
+                  {/*            allowFullScreen/>*/}
+                  {/*  </Row>*/}
+                  {/*</Card.Body>*/}
                 </Card>
 
                 <Button onClick={() => addDummies()}>그래프 업데이트</Button>
