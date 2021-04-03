@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Card, Col, Container, Jumbotron, Row} from "react-bootstrap";
 import {MainHeader} from "../../components/MainHeader";
 import {MainSideBar} from "../../components/MainSideBar";
@@ -8,7 +8,7 @@ import {CurrentPlayerInfo, GamePageParams} from "../../interfaces/interfaces"
 import MainFooter from "../../components/MainFooter";
 import {useRecoilState} from "recoil";
 import {gameDataState} from "../../states/states";
-import postData, {randomString} from "../../lib/functions";
+import {postData, randomString, useInterval} from "../../lib/functions";
 
 import './game.scss';
 
@@ -16,12 +16,20 @@ function Game(props: RouteComponentProps<GamePageParams>) {
   let {match} = props;
 
   const [gameData, setGameData] = useRecoilState(gameDataState)
-
   const gameId = match.params.id
 
-  useEffect(() => {
-    updateGameData();
-  });
+  const updateGameData = () => {
+    postData("/api/read_game", {gameId: gameId}).then(
+        res => {
+          setGameData(res)
+        })
+  }
+
+
+  useInterval(() => {
+    updateGameData()
+  }, 8 * 1000);
+
 
   const graphOptions = {
     scales: {
@@ -47,24 +55,16 @@ function Game(props: RouteComponentProps<GamePageParams>) {
     position: gameData.homeTeam.current_player_position
   }
 
-  const updateGameData = () => {
-    postData("/api/read_game", {gameId: gameId}).then(
-        res => {
-          setGameData(res)
-        })
-  }
-
   const getGraphData = (graph_data: { x: string[]; y: number[] }) => {
     let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
     let data = {
       labels: graph_data.x,
       datasets: [
         {
-          backgroundColor: rankColor,
-          borderColor: rankColor,
-          borderWidth: 1,
-          hoverBackgroundColor: rankColor,
-          hoverBorderColor: rankColor,
+          label: "승률",
+          fill: false,
+          borderColor: 'rgb(255,219,0)',
+          tension: 0.1,
           data: graph_data.y
         }
       ]
@@ -84,8 +84,7 @@ function Game(props: RouteComponentProps<GamePageParams>) {
   return (
       <div className="App">
         <MainHeader/>
-        <span>{gameId}</span>
-        <span>{JSON.stringify(gameData)}</span>
+        <div className="modal fade show vh-100 vw-100"/>
         <main id="game-main">
           <Container fluid>
             <Row>
