@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"encoding/json"
 	"github.com/kamva/mgm/v3"
 	"log"
 )
@@ -14,4 +15,12 @@ func MongoDisconnect() {
 	if err != nil {
 		log.Fatal("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
 	}
+}
+
+func ErrorAsJsonString(errorString string) string {
+	jsonByte, err := json.Marshal(ErrorJson{Error: errorString})
+	if err != nil {
+		panic(err)
+	}
+	return string(jsonByte)
 }

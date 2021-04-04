@@ -27,7 +27,7 @@ func init() {
 	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
 	if err != nil {
 		log.Println(err)
-		log.Fatal("몽고디비 연결에 문제가 있습니다")
+		panic("몽고디비 연결에 문제가 있습니다")
 	}
 	rand.Seed(time.Now().UnixNano())
 }
@@ -76,9 +76,11 @@ func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	w.Header().Set("Content-Type", "application/json")
 
+	defer lib.MongoDisconnect()
+
 	err := r.ParseForm()
 	if err != nil {
-		log.Fatal("파라미터 분석에 문제가 있습니다")
+		panic("파라미터 분석에 문제가 있습니다")
 	}
 
 	game := createMockup()
@@ -86,11 +88,9 @@ func INSERT_GAME(w http.ResponseWriter, r *http.Request) {
 	err = mgm.Coll(game).Create(game)
 	if err != nil {
 		log.Println(err)
-		log.Fatal("DOC 삽입에 문제가 있습니다")
+		panic("DOC 삽입에 문제가 있습니다")
 	}
 
 	jsonGame, err := json.Marshal(game)
 	fmt.Fprint(w, string(jsonGame))
-
-	defer lib.MongoDisconnect()
 }

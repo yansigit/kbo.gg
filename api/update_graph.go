@@ -28,7 +28,7 @@ func init() {
 	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
 	if err != nil {
 		log.Println(err)
-		log.Fatal("몽고디비 연결에 문제가 있습니다")
+		panic("몽고디비 연결에 문제가 있습니다")
 	}
 	rand.Seed(time.Now().UnixNano())
 }
@@ -37,18 +37,20 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	w.Header().Set("Content-Type", "application/json")
 
+	defer lib.MongoDisconnect()
+
 	var params updateGraphJsonParams
 	decoder := json.NewDecoder(r.Body)
 	decoder.DisallowUnknownFields()
 	err := decoder.Decode(&params)
 	if err != nil {
-		log.Fatal("JSON을 파싱하는데 문제가 있습니다")
+		panic("JSON을 파싱하는데 문제가 있습니다")
 	}
 
 	game := &lib.Game{}
 	err = mgm.Coll(game).First(bson.M{"gameId": params.GameId}, game)
 	if err != nil {
-		log.Fatal("몽고DB에서 문서를 찾는데 문제가 있습니다")
+		panic("몽고DB에서 문서를 찾는데 문제가 있습니다")
 	}
 
 	game.AwayTeam.GraphData.X = append(game.AwayTeam.GraphData.X, params.AwayTeamGraph.X...)
@@ -58,7 +60,7 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 
 	err = mgm.Coll(game).Update(game)
 	if err != nil {
-		log.Fatal("몽고DB를 업데이트 하는데 문제가 있습니다")
+		panic("몽고DB를 업데이트 하는데 문제가 있습니다")
 	}
 
 	returnValue := graphReturnFormat{
@@ -68,6 +70,4 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 
 	jsonBytes, err := json.Marshal(returnValue)
 	fmt.Fprint(w, string(jsonBytes))
-
-	defer lib.MongoDisconnect()
 }

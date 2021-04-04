@@ -16,14 +16,19 @@ function Game(props: RouteComponentProps<GamePageParams>) {
   let {match} = props;
 
   const [isFetched, setFetched] = useState(false)
+  const [loadingMessage, setLoadingMessage] = useState("로딩중입니다")
   const [gameData, setGameData] = useRecoilState(gameDataState)
   const gameId = match.params.id
 
   const updateGameData = () => {
     postData("/api/read_game", {gameId: gameId}).then(
         res => {
-          setGameData(res)
-          setFetched(true)
+          if ('error' in res) {
+            setLoadingMessage(res.error)
+          } else {
+            setGameData(res)
+            setFetched(true)
+          }
         })
   }
 
@@ -85,7 +90,7 @@ function Game(props: RouteComponentProps<GamePageParams>) {
 
   const GameRenderer = (fetched: boolean) => {
     if (!fetched)
-      return <Container className="pt-3"><h2>로딩중입니다</h2></Container>
+      return <Container className="pt-3"><h2>{loadingMessage}</h2></Container>
     else
       return <main id="game-main">
         <Container fluid>

@@ -18,12 +18,17 @@ func init() {
 	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
 	if err != nil {
 		log.Println(err)
-		log.Fatal("몽고디비 연결에 문제가 있습니다")
+		panic("몽고디비 연결에 문제가 있습니다")
 	}
 	rand.Seed(time.Now().UnixNano())
 }
 
 func GAME_LIST(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	w.Header().Set("Content-Type", "application/json")
+
+	defer lib.MongoDisconnect()
+
 	result := []lib.Game{}
 	timezone, err := time.LoadLocation("Asia/Seoul")
 	err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"created_at": bson.M{
@@ -31,10 +36,8 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 		operator.Lte: time.Date(2022, 1, 1, 0, 0, 0, 0, timezone),
 	}})
 	if err != nil {
-		log.Fatal("문제가 있습니다")
+		panic("문제가 있습니다")
 	}
 	jsonBytes, err := json.Marshal(result)
 	fmt.Fprint(w, string(jsonBytes))
-
-	defer lib.MongoDisconnect()
 }

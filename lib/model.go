@@ -24,3 +24,7 @@ type Graph struct {
 	X []string `json:"x" bson:"x"`
 	Y []int    `json:"y" bson:"y"`
 }
+
+type ErrorJson struct {
+	Error string `json:"error"`
+}

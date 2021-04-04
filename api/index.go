@@ -14,7 +14,7 @@ func init() {
 	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
 	if err != nil {
 		log.Println(err)
-		log.Fatal("몽고디비 연결에 문제가 있습니다")
+		panic("몽고디비 연결에 문제가 있습니다")
 	}
 	rand.Seed(time.Now().UnixNano())
 }
