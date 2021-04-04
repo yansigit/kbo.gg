@@ -24,19 +24,16 @@ export interface GameData {
         team_name: string,
         current_player: string,
         current_player_position: string,
-        graph_data: {
-            x: string[],
-            y: number[]
-        }
     },
     homeTeam: {
         score: number,
         team_name: string,
         current_player: string,
         current_player_position: string,
-        graph_data: {
-            x: string[],
-            y: number[],
-        }
+    },
+    graph_data: {
+        x: string[],
+        y1: number[],
+        y2: number[],
     }
 }

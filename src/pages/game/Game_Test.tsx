@@ -10,33 +10,36 @@ import {useInterval} from "../../lib/functions";
 
 import './game.scss';
 
-class MockUpData implements GameData {
-  awayTeam = {
+const MockUpData: GameData = {
+  awayTeam: {
     score: 0,
     team_name: "두산 베어스",
     current_player: "어웨이선수1",
     current_player_position: "투수",
-    graph_data: {x: ["선수1"], y: [0]}
-  };
-  created_at = "2021";
-  gameId = "TEST_ID";
-  homeTeam = {
+  },
+  created_at: "2021",
+  gameId: "TEST_ID",
+  homeTeam: {
     score: 0,
     team_name: "삼성 라이온즈",
     current_player: "홈선수1",
     current_player_position: "타자",
-    graph_data: {x: ["선수1"], y: [0]}
-  };
-  id = "TEST_ID";
-  updated_at = "2021";
-}
+  },
+  graph_data: {
+    x: [],
+    y1: [],
+    y2: [],
+  },
+  id: "TEST_ID",
+  updated_at: "2021",
+};
 
 function Game(props: RouteComponentProps<GamePageParams>) {
   let {match} = props;
 
   const [isFetched, setFetched] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("로딩중입니다");
-  const [gameData, setGameData] = useState(new MockUpData());
+  const [gameData, setGameData] = useState(MockUpData);
   const gameId = match.params.id;
 
   const updateGameData = () => {
@@ -54,19 +57,24 @@ function Game(props: RouteComponentProps<GamePageParams>) {
     target.homeTeam.current_player_position = positions[index]
     target.awayTeam.current_player_position = positions[index ^ 1]
 
-    target.awayTeam.graph_data.x.push("선수" + awayPlayerIndex);
-    target.awayTeam.graph_data.y.push(Math.floor(Math.random() * 100));
-    target.homeTeam.graph_data.x.push("선수" + homePlayerIndex);
-    target.homeTeam.graph_data.y.push(Math.floor(Math.random() * 100));
+    const awayWinningRate = Math.floor(Math.random() * 100)
+    const homeWinningRate = 100 - awayWinningRate
+    target.graph_data.y1.push(awayWinningRate);
+    target.graph_data.y2.push(homeWinningRate);
+
+    target.graph_data.x.push("라운드" + target.graph_data.y2.length);
 
     setGameData(target)
   }
 
   useInterval(() => {
-    updateGameData()
+    if (gameData.graph_data.x.length < 13) {
+      updateGameData()
+    }
   }, 3 * 1000);
 
   const graphOptions = {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [
         {
@@ -90,17 +98,23 @@ function Game(props: RouteComponentProps<GamePageParams>) {
     position: gameData.homeTeam.current_player_position
   }
 
-  const getGraphData = (graph_data: { x: string[]; y: number[] }) => {
+  const getGraphData = (graph_data: { x: string[]; y1: number[], y2: number[] }) => {
     let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
     let data = {
       labels: [...graph_data.x],
       datasets: [
         {
-          label: "승률",
+          label: "AWAY팀 승률",
           fill: false,
-          borderColor: 'rgb(255,219,0)',
+          borderColor: 'rgb(255,165,165)',
           tension: 0.1,
-          data: [...graph_data.y]
+          data: [...graph_data.y1]
+        }, {
+          label: "HOME팀 승률",
+          fill: false,
+          borderColor: 'rgb(168,185,255)',
+          tension: 0.1,
+          data: [...graph_data.y2]
         }
       ]
     }
@@ -161,23 +175,13 @@ function Game(props: RouteComponentProps<GamePageParams>) {
               </Card>
 
               <Row>
-                <Col md="6">
+                <Col md="12">
                   <Card className="rounded-0 mt-4 game-card">
-                    <Card.Header className="bg-danger text-white">
-                      {awayCurrentPlayerInfo.teamName} 승리확률
+                    <Card.Header className={"bg-warning"}>
+                      각 팀 승리확률
                     </Card.Header>
-                    <Card.Body>
-                      <Line data={getGraphData(gameData.awayTeam.graph_data)} options={graphOptions}/>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md="6">
-                  <Card className="rounded-0 mt-4 game-card">
-                    <Card.Header className="bg-primary text-white">
-                      {homeCurrentPlayerInfo.teamName} 승리확률
-                    </Card.Header>
-                    <Card.Body>
-                      <Line data={getGraphData(gameData.homeTeam.graph_data)} options={graphOptions}/>
+                    <Card.Body className="d-flex justify-content-center">
+                      <Line data={getGraphData(gameData.graph_data)} width={100} height={450} options={graphOptions}/>
                     </Card.Body>
                   </Card>
                 </Col>

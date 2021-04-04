@@ -62,17 +62,23 @@ function Game(props: RouteComponentProps<GamePageParams>) {
     position: gameData.homeTeam.current_player_position
   }
 
-  const getGraphData = (graph_data: { x: string[]; y: number[] }) => {
+  const getGraphData = (graph_data: { x: string[]; y1: number[], y2: number[] }) => {
     let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
     let data = {
       labels: [...graph_data.x],
       datasets: [
         {
-          label: "승률",
+          label: "AWAY팀 승률",
           fill: false,
-          borderColor: 'rgb(255,219,0)',
+          borderColor: 'rgb(255,0,0)',
           tension: 0.1,
-          data: [...graph_data.y]
+          data: [...graph_data.y1]
+        }, {
+          label: "HOME팀 승률",
+          fill: false,
+          borderColor: 'rgb(0,64,255)',
+          tension: 0.1,
+          data: [...graph_data.y2]
         }
       ]
     }
@@ -133,23 +139,13 @@ function Game(props: RouteComponentProps<GamePageParams>) {
               </Card>
 
               <Row>
-                <Col md="6">
-                  <Card className="rounded-0 mt-4 game-card">
-                    <Card.Header className="bg-danger text-white">
-                      {awayCurrentPlayerInfo.teamName} 승리확률
-                    </Card.Header>
-                    <Card.Body>
-                      <Line data={getGraphData(gameData.awayTeam.graph_data)} options={graphOptions}/>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md="6">
+                <Col md="12">
                   <Card className="rounded-0 mt-4 game-card">
                     <Card.Header className="bg-primary text-white">
                       {homeCurrentPlayerInfo.teamName} 승리확률
                     </Card.Header>
                     <Card.Body>
-                      <Line data={getGraphData(gameData.homeTeam.graph_data)} options={graphOptions}/>
+                      <Line data={getGraphData(gameData.graph_data)} options={graphOptions}/>
                     </Card.Body>
                   </Card>
                 </Col>
