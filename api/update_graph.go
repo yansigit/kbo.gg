@@ -14,14 +14,12 @@ import (
 )
 
 type updateGraphJsonParams struct {
-	GameId        string    `json:"gameId"`
-	AwayTeamGraph lib.Graph `json:"awayTeamGraph"`
-	HomeTeamGraph lib.Graph `json:"homeTeamGraph"`
+	GameId string    `json:"gameId"`
+	Graph  lib.Graph `json:"graph"`
 }
 
 type graphReturnFormat struct {
-	AwayTeamGraph lib.Graph `json:"awayTeamGraph"`
-	HomeTeamGraph lib.Graph `json:"homeTeamGraph"`
+	UpdatedGraph lib.Graph `json:"updatedGraph"`
 }
 
 func init() {
@@ -53,10 +51,9 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 		panic("몽고DB에서 문서를 찾는데 문제가 있습니다")
 	}
 
-	game.AwayTeam.GraphData.X = append(game.AwayTeam.GraphData.X, params.AwayTeamGraph.X...)
-	game.HomeTeam.GraphData.X = append(game.HomeTeam.GraphData.X, params.HomeTeamGraph.X...)
-	game.AwayTeam.GraphData.Y = append(game.AwayTeam.GraphData.Y, params.AwayTeamGraph.Y...)
-	game.HomeTeam.GraphData.Y = append(game.HomeTeam.GraphData.Y, params.HomeTeamGraph.Y...)
+	game.GraphData.X = append(game.GraphData.X, params.Graph.X...)
+	game.GraphData.Y1 = append(game.GraphData.Y1, params.Graph.Y1...)
+	game.GraphData.Y2 = append(game.GraphData.Y2, params.Graph.Y2...)
 
 	err = mgm.Coll(game).Update(game)
 	if err != nil {
@@ -64,8 +61,7 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 	}
 
 	returnValue := graphReturnFormat{
-		AwayTeamGraph: game.AwayTeam.GraphData,
-		HomeTeamGraph: game.HomeTeam.GraphData,
+		UpdatedGraph: game.GraphData,
 	}
 
 	jsonBytes, err := json.Marshal(returnValue)

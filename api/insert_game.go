@@ -47,6 +47,8 @@ func createMockup() *lib.Game {
 	firstPositionIndex := rand.Intn(1)
 	nextPositionIndex := firstPositionIndex ^ 1
 	gameId := "2021" + randSeq(7) + strconv.Itoa(rand.Intn(9999))
+	y, yy, yyy := rand.Intn(100), rand.Intn(100), rand.Intn(100)
+	y2, yy2, yyy2 := 100-y, 100-yy, 100-yyy
 	return &lib.Game{
 		GameId: gameId,
 		AwayTeam: lib.Team{
@@ -54,20 +56,17 @@ func createMockup() *lib.Game {
 			TeamName:              randSeq(2) + " " + randSeq(5),
 			CurrentPlayer:         randName(3),
 			CurrentPlayerPosition: positions[firstPositionIndex],
-			GraphData: lib.Graph{
-				X: []string{randName(3), randName(3), randName(3)},
-				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100)},
-			},
 		},
 		HomeTeam: lib.Team{
 			Score:                 rand.Intn(20),
 			TeamName:              randSeq(2) + " " + randSeq(6),
 			CurrentPlayer:         randName(3),
 			CurrentPlayerPosition: positions[nextPositionIndex],
-			GraphData: lib.Graph{
-				X: []string{randName(3), randName(3), randName(3)},
-				Y: []int{rand.Intn(100), rand.Intn(100), rand.Intn(100)},
-			},
+		},
+		GraphData: lib.Graph{
+			X:  []string{randName(3), randName(3), randName(3)},
+			Y1: []int{y, yy, yyy},
+			Y2: []int{y2, yy2, yyy2},
 		},
 	}
 }

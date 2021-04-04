@@ -99,7 +99,6 @@ function Game(props: RouteComponentProps<GamePageParams>) {
   }
 
   const getGraphData = (graph_data: { x: string[]; y1: number[], y2: number[] }) => {
-    let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
     let data = {
       labels: [...graph_data.x],
       datasets: [
