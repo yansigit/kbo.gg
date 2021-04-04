@@ -42,13 +42,15 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 	decoder.DisallowUnknownFields()
 	err := decoder.Decode(&params)
 	if err != nil {
-		panic("JSON을 파싱하는데 문제가 있습니다")
+		fmt.Fprint(w, lib.ErrorAsJsonString("JSON을 파싱할 수 없습니다"))
+		return
 	}
 
 	game := &lib.Game{}
 	err = mgm.Coll(game).First(bson.M{"gameId": params.GameId}, game)
 	if err != nil {
-		panic("몽고DB에서 문서를 찾는데 문제가 있습니다")
+		fmt.Fprint(w, lib.ErrorAsJsonString("문서를 찾을 수 없습니다"))
+		return
 	}
 
 	game.GraphData.X = append(game.GraphData.X, params.Graph.X...)
@@ -57,7 +59,8 @@ func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {
 
 	err = mgm.Coll(game).Update(game)
 	if err != nil {
-		panic("몽고DB를 업데이트 하는데 문제가 있습니다")
+		fmt.Fprint(w, lib.ErrorAsJsonString("문서를 업데이트 할 수 없습니다"))
+		return
 	}
 
 	returnValue := graphReturnFormat{

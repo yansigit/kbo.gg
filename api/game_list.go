@@ -36,7 +36,8 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 		operator.Lte: time.Date(2022, 1, 1, 0, 0, 0, 0, timezone),
 	}})
 	if err != nil {
-		panic("문제가 있습니다")
+		fmt.Fprint(w, lib.ErrorAsJsonString("문제가 있습니다"))
+		return
 	}
 	jsonBytes, err := json.Marshal(result)
 	fmt.Fprint(w, string(jsonBytes))
