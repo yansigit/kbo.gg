@@ -38,7 +38,7 @@ export default function Main() {
         <MainHeader/>
 
         <div className="w-100 notification-bar text-center py-2">
-          <h5>(공지) 현재 잠실 경기장에서 두산 VS 롯데 매치가 진행중입니다</h5>{' '}<a href="#">[바로가기]</a>
+          <h5>(공지) 현재 두산 VS 삼성 매치가 진행중입니다</h5>{' '}<a href="/game/test">[바로가기]</a>
         </div>
 
         <Jumbotron id="main-search-jumbotron" className="rounded-0 text-center" fluid>

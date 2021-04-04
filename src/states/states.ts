@@ -8,5 +8,5 @@ export const gameDataState = atom({
 
 export const gameListState = atom({
     key: 'gameListState',
-    default: {gameTitleArray: ["로딩중입니다"], gameIdArray: [] as string[]}
+    default: {gameTitleArray: ["로딩중입니다"], gameIdArray: [""]}
 })

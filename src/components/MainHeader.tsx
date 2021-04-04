@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Jumbotron, Nav, Navbar, NavDropdown, Figure} from "react-bootstrap";
+import {Container, Jumbotron, Nav, Navbar} from "react-bootstrap";
 import kbo_logo from "../res/kbo-logo-itself.png"
 import {IoHome, IoPlayForward, IoPodiumSharp} from 'react-icons/io5';
 
@@ -48,9 +48,7 @@ export class MainHeader extends React.Component {
                                 <Nav.Link href="/history">과거 내역</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="disabled" disabled>
-                                    테스트
-                                </Nav.Link>
+                                <Nav.Link href="/game/test">테스트</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Navbar>

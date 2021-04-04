@@ -9,6 +9,7 @@ import Main from "./pages/main/Main";
 import {RecoilRoot} from "recoil";
 import './index.scss';
 import GameList from "./pages/game/GameList";
+import Game_Test from "./pages/game/Game_Test";
 
 
 ReactDOM.render(
@@ -18,6 +19,7 @@ ReactDOM.render(
               <Switch>
                   <Route path='/' component={Main} exact/>
                   <Route path='/game' component={GameList} exact/>
+                  <Route path='/game/test' component={Game_Test} exact/>
                   <Route path='/game/:id' component={Game}/>
                   <Route path='/history' component={History}/>
               </Switch>
