@@ -14,10 +14,11 @@ export default function Main() {
   const [gameList, setGameList] = useRecoilState(gameListState);
 
   fetch("/api/game_list").then(res => res.json()).then((gameList: GameData[]) => {
+    const gameListReversed = gameList.reverse();
     setGameList({
-      gameTitleArray: gameList.map(game => {
+      gameTitleArray: gameListReversed.map(game => {
         return game.created_at + " / " + game.awayTeam.team_name + " VS " + game.homeTeam.team_name
-      }), gameIdArray: gameList.map(game => {
+      }), gameIdArray: gameListReversed.map(game => {
         return game.gameId
       })
     })

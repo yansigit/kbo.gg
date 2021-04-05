@@ -1,13 +1,33 @@
 import React from "react";
 import {MainHeader} from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
-import {Card, Container, Accordion, Button, ListGroup} from "react-bootstrap";
+import {Accordion, Button, Card, Container, ListGroup} from "react-bootstrap";
+import {useRecoilState} from "recoil";
+import {gameListState} from "../../states/states";
+import {GameData} from "../../interfaces/interfaces";
 
-export default class History extends React.Component {
-  render() {
-    return (
+export default function History() {
+
+  const [gameList, setGameList] = useRecoilState(gameListState);
+
+  fetch("/api/game_list").then(res => res.json()).then((gameList: GameData[]) => {
+    setGameList({
+      gameTitleArray: gameList.map(game => {
+        return game.created_at + " / " + game.awayTeam.team_name + " VS " + game.homeTeam.team_name
+      }), gameIdArray: gameList.map(game => {
+        return game.gameId
+      })
+    })
+  });
+
+  const ListArray = () => {
+    return gameList.gameTitleArray.map((game, index) => <ListGroup.Item key={index}><a
+        href={"/game/" + gameList.gameIdArray[index]}>{game}</a></ListGroup.Item>)
+  }
+
+  return (
       <>
-        <MainHeader />
+        <MainHeader/>
         <h2 className="text-center my-4">과거 경기 기록</h2>
         <Container>
           <Accordion defaultActiveKey="0" className="rounded-0">
@@ -20,10 +40,7 @@ export default class History extends React.Component {
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <ListGroup variant="flush">
-                    <ListGroup.Item>2021.XX.XX / 잠실 경기장 : 테스트 VS 테스트</ListGroup.Item>
-                    <ListGroup.Item>2021.XX.XX / 사직 경기장 : 테스트 VS 테스트</ListGroup.Item>
-                    <ListGroup.Item>2021.XX.XX / 잠실 경기장 : 테스트 VS 테스트</ListGroup.Item>
-                    <ListGroup.Item>2021.XX.XX / 사직 경기장 : 테스트 VS 테스트</ListGroup.Item>
+                    {ListArray()}
                   </ListGroup>
                 </Card.Body>
               </Accordion.Collapse>
@@ -43,8 +60,7 @@ export default class History extends React.Component {
           </Accordion>
         </Container>
 
-        <MainFooter />
+        <MainFooter/>
       </>
-    );
-  }
+  );
 }
