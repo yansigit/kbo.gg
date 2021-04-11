@@ -5,12 +5,8 @@ import (
 	"fmt"
 	"github.com/kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"kbogg.imyoon.tech/lib"
-	"log"
-	"math/rand"
 	"net/http"
-	"time"
 )
 
 type updateGraphJsonParams struct {
@@ -23,12 +19,7 @@ type graphReturnFormat struct {
 }
 
 func init() {
-	err := mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI("mongodb+srv://capstone:itit2021@kbo-gg.txhj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
-	if err != nil {
-		log.Println(err)
-		panic("몽고디비 연결에 문제가 있습니다")
-	}
-	rand.Seed(time.Now().UnixNano())
+	lib.MongoConnect()
 }
 
 func UPDATE_GRAPH(w http.ResponseWriter, r *http.Request) {

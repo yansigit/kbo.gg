@@ -18,7 +18,7 @@ export class MainSideBar extends React.Component<SideBarProps> {
     render() {
         return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header className={this.headerColor}>
-                {this.props.currentPlayer.teamName} {this.props.currentPlayer.position}
+                {this.props.currentPlayer.teamName}
             </Card.Header>
             <Card.Body>
                 <Row className="text-left">
@@ -26,13 +26,13 @@ export class MainSideBar extends React.Component<SideBarProps> {
                         <img src="//via.placeholder.com/150" alt="선수 사진" className="w-100 h-100"
                              style={{maxHeight: "150px", maxWidth: "150px"}}/>
                     </Col>
-                    <Col sm={7}>
+                    <Col sm={7} className="d-flex flex-column">
                         <table className="w-100 h-100">
                             <tr>
                                 <td className="text-center font-weight-bold">{this.props.currentPlayer.playerName}</td>
                             </tr>
                             <tr>
-                                <td className="text-center">테스트</td>
+                                <td className="text-center">{this.props.currentPlayer.position}</td>
                             </tr>
                         </table>
                     </Col>

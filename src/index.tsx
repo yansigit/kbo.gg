@@ -9,7 +9,7 @@ import Main from "./pages/main/Main";
 import {RecoilRoot} from "recoil";
 import './index.scss';
 import GameList from "./pages/game/GameList";
-import Game_Test from "./pages/game/Game_Test";
+import Game_Test from "./pages/game/GameTest";
 
 
 ReactDOM.render(
