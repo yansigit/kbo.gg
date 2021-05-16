@@ -22,18 +22,19 @@ func MongoConnect() {
 		log.Println(err)
 		panic("몽고디비 연결에 문제가 있습니다")
 	}
+
 	rand.Seed(time.Now().UnixNano())
 }
 
 func MongoDisconnect() {
-	_, client, _, err := mgm.DefaultConfigs()
-	if err != nil {
-		panic(err)
-	}
-	err = client.Disconnect(mgm.Ctx())
-	if err != nil {
-		log.Println("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
-	}
+	//_, client, _, err := mgm.DefaultConfigs()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//err = client.Disconnect(mgm.Ctx())
+	//if err != nil {
+	//	log.Println("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
+	//}
 }
 
 func ErrorAsJsonString(errorString string) string {

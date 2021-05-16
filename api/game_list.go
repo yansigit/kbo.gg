@@ -8,6 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"kbogg.imyoon.tech/lib"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -18,6 +19,7 @@ func init() {
 }
 
 func GAME_LIST(w http.ResponseWriter, r *http.Request) {
+
 	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	w.Header().Set("Content-Type", "application/json")
 
@@ -51,6 +53,7 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 		lteDate = gteDate.AddDate(0, 1, 0)
 	}
 
+FIND:
 	var err error
 	if len(simulated) > 0 {
 		err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"gameId": bson.M{
@@ -65,9 +68,9 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err != nil {
-		fmt.Fprint(w, err.Error())
-		// fmt.Fprint(w, lib.ErrorAsJsonString("문제가 있습니다"))
-		return
+		log.Println(err)
+		lib.MongoConnect()
+		goto FIND
 	}
 	jsonBytes, err := json.Marshal(result)
 	fmt.Fprint(w, string(jsonBytes))
