@@ -18,6 +18,8 @@ export interface GameData {
     id?: any,
     created_at?: any,
     updated_at?: any,
+    gameDate: any,
+    gameStadium: string,
     gameId: string,
     awayTeam: {
         score: number,

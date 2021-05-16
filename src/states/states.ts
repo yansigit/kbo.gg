@@ -8,5 +8,29 @@ export const gameDataState = atom({
 
 export const gameListState = atom({
     key: 'gameListState',
-    default: {gameTitleArray: ["로딩중입니다"], gameIdArray: [""]}
+    default: [{
+        id: "",
+        created_at: "",
+        updated_at: "",
+        gameId: "",
+        gameDate: "",
+        gameStadium: "",
+        awayTeam: {
+            score: 0,
+            team_name: "",
+            current_player: "",
+            current_player_position: ""
+        },
+        homeTeam: {
+            score: 0,
+            team_name: "",
+            current_player: "",
+            current_player_position: ""
+        },
+        graph_data: {
+            x: [],
+            y1: [],
+            y2: []
+        }
+    }]
 })

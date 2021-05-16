@@ -2,15 +2,18 @@ package lib
 
 import (
 	"github.com/kamva/mgm/v3"
+	"time"
 )
 
 type Game struct {
 	// DefaultModel adds _id, created_at and updated_at fields to the Model
 	mgm.DefaultModel `bson:",inline"`
-	GameId           string `json:"gameId" bson:"gameId"`
-	AwayTeam         Team   `json:"awayTeam" bson:"awayTeam"`
-	HomeTeam         Team   `json:"homeTeam" bson:"homeTeam"`
-	GraphData        Graph  `json:"graph_data" bson:"graph_data"`
+	GameId           string    `json:"gameId" bson:"gameId"`
+	AwayTeam         Team      `json:"awayTeam" bson:"awayTeam"`
+	HomeTeam         Team      `json:"homeTeam" bson:"homeTeam"`
+	GraphData        Graph     `json:"graph_data" bson:"graph_data"`
+	GameDate         time.Time `json:"gameDate" bson:"gameDate"`
+	GameStadium      string    `json:"gameStadium" bson:"gameStadium"`
 }
 
 type Team struct {

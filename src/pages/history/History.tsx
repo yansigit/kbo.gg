@@ -1,28 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import {MainHeader} from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
 import {Accordion, Button, Card, Container, ListGroup} from "react-bootstrap";
 import {useRecoilState} from "recoil";
 import {gameListState} from "../../states/states";
-import {GameData} from "../../interfaces/interfaces";
 
 export default function History() {
 
   const [gameList, setGameList] = useRecoilState(gameListState);
+  const [init, setInit] = useState(true);
 
-  fetch("/api/game_list").then(res => res.json()).then((gameList: GameData[]) => {
-    setGameList({
-      gameTitleArray: gameList.map(game => {
-        return game.created_at + " / " + game.awayTeam.team_name + " VS " + game.homeTeam.team_name
-      }), gameIdArray: gameList.map(game => {
-        return game.gameId
-      })
-    })
-  });
+  if (init) {
+    fetch("/api/game_list?recent=1").then(res => res.json()).then(json => setGameList(json))
+    setInit(false)
+  }
 
   const ListArray = () => {
-    return gameList.gameTitleArray.map((game, index) => <ListGroup.Item key={index}><a
-        href={"/game/" + gameList.gameIdArray[index]}>{game}</a></ListGroup.Item>)
+    return gameList.map((game, index) => <ListGroup.Item key={index}><a
+        href={"/game/" + game.id}>{game.id}</a></ListGroup.Item>)
   }
 
   return (
