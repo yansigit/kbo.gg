@@ -1,23 +1,21 @@
 import React, {useState} from "react";
 import {MainHeader} from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
-import {Accordion, Button, Card, Container, ListGroup} from "react-bootstrap";
+import {Accordion, Button, Card, Container, Row, Spinner} from "react-bootstrap";
 import {useRecoilState} from "recoil";
 import {gameListState} from "../../states/states";
+import GameListTable from "../../components/GameListTable";
+import {getVisibility} from "../../lib/functions";
 
 export default function History() {
 
   const [gameList, setGameList] = useRecoilState(gameListState);
   const [init, setInit] = useState(true);
+  const [visible, setVisible] = useState(true)
 
   if (init) {
-    fetch("/api/game_list?recent=1").then(res => res.json()).then(json => setGameList(json))
+    fetch("/api/game_list").then(res => res.json()).then(json => setGameList(json)).then(() => setVisible(false))
     setInit(false)
-  }
-
-  const ListArray = () => {
-    return gameList.map((game, index) => <ListGroup.Item key={index}><a
-        href={"/game/" + game.id}>{game.id}</a></ListGroup.Item>)
   }
 
   return (
@@ -34,9 +32,14 @@ export default function History() {
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <ListGroup variant="flush">
-                    {ListArray()}
-                  </ListGroup>
+                  <Row className={getVisibility(!visible)}>
+                    <GameListTable gameList={gameList}/>
+                  </Row>
+                  <Row className="justify-content-center">
+                    <Spinner className={"m-4 " + getVisibility(visible)} animation="border" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
+                  </Row>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

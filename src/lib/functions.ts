@@ -1,5 +1,13 @@
 import {useEffect, useRef} from "react";
 
+export const getVisibility = (visible: boolean) => {
+    if (visible) {
+        return "visible"
+    } else {
+        return "d-none invisible"
+    }
+}
+
 export function postData(url = '', data = {}) {
     // Default options are marked with *
     return fetch(url, {

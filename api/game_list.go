@@ -54,8 +54,10 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 		operator.Gte: gteDate,
 		operator.Lte: lteDate,
 	}}, findOptions)
+
 	if err != nil {
-		fmt.Fprint(w, lib.ErrorAsJsonString("문제가 있습니다"))
+		fmt.Fprint(w, err.Error())
+		// fmt.Fprint(w, lib.ErrorAsJsonString("문제가 있습니다"))
 		return
 	}
 	jsonBytes, err := json.Marshal(result)

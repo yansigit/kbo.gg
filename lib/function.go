@@ -2,7 +2,6 @@ package lib
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,7 +14,7 @@ import (
 func MongoConnect() {
 	err := godotenv.Load("C:\\Users\\lnb\\WebstormProjects\\kbo.gg\\.env")
 	if err != nil {
-		fmt.Println("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	err = mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI(os.Getenv("MONGO_URL")))
@@ -33,7 +32,7 @@ func MongoDisconnect() {
 	}
 	err = client.Disconnect(mgm.Ctx())
 	if err != nil {
-		panic("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
+		log.Println("몽고DB 커넥션을 종료 하는데 문제가 있습니다")
 	}
 }
 

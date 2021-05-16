@@ -1,22 +1,21 @@
-import React, {useState} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import {MainHeader} from "../../components/MainHeader";
-import {Jumbotron, ListGroup, Row, Table} from "react-bootstrap";
+import {Jumbotron, ListGroup, Row} from "react-bootstrap";
 import MainFooter from "../../components/MainFooter";
 import './main.scss';
 import {gameListState} from "../../states/states";
 import {useRecoilState} from "recoil";
 import {Redirect} from "react-router-dom";
+import GameListTable from "../../components/GameListTable";
 
 export default function Main() {
 
     const [searchValue, setSearchValue] = useState("");
     const [gameList, setGameList] = useRecoilState(gameListState);
-    const [init, setInit] = useState(true);
 
-    if (init) {
+    useLayoutEffect(() => {
         fetch("/api/game_list?recent=1").then(res => res.json()).then(json => setGameList(json))
-        setInit(false)
-    }
+    });
 
     const RecentListArray = () => {
         return gameList.map((game, index) => {
@@ -52,31 +51,7 @@ export default function Main() {
               {/*</InputGroup>*/}
 
               <Row>
-                  <Table striped bordered hover variant="light">
-                      <thead>
-                      <tr>
-                          <th>날짜</th>
-                          <th>시간</th>
-                          <th>구장</th>
-                          <th>경기</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      {
-                          gameList.map((game, index) => {
-                              let [date, time] = game.gameDate.split('T')
-                              if (time)
-                                  time = time.substr(0, 5)
-                              return <tr>
-                                  <td>{date}</td>
-                                  <td>{time}</td>
-                                  <td>{game.gameStadium}</td>
-                                  <td>{game.awayTeam.team_name} VS {game.homeTeam.team_name}</td>
-                              </tr>
-                          })
-                      }
-                      </tbody>
-                  </Table>
+                  <GameListTable gameList={gameList}/>
               </Row>
 
           </Jumbotron>

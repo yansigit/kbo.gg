@@ -1,71 +1,54 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {MainHeader} from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
-import {Accordion, Card, Container, ListGroup, Row, Table} from "react-bootstrap";
+import GameListTable from "../../components/GameListTable";
+import {Accordion, Card, Container, ListGroup, Row, Spinner} from "react-bootstrap";
 import {useRecoilState} from "recoil";
 import {gameListState} from "../../states/states";
-
-function GameListTable() {
-    return <Table striped bordered hover variant="light">
-        <thead>
-        <tr>
-            <th>날짜</th>
-            <th>시간</th>
-            <th>구장</th>
-            <th>경기</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td rowSpan={2} style={{verticalAlign: 'middle'}}>2021-05-01</td>
-            <td>17:00</td>
-            <td>잠실</td>
-            <td>SSG 5:2 두산</td>
-        </tr>
-        <tr>
-            <td>17:00</td>
-            <td>잠실</td>
-            <td>SSG 5:2 두산</td>
-        </tr>
-        <tr>
-            <td>2021-05-02</td>
-            <td>17:00</td>
-            <td>잠실</td>
-            <td>SSG 5:2 두산</td>
-        </tr>
-        </tbody>
-    </Table>;
-}
+import {getVisibility} from "../../lib/functions";
 
 export default function GameList() {
 
     const [gameList, setGameList] = useRecoilState(gameListState);
-    const [init, setInit] = useState(true);
-    const [month, setMonth] = useState(3);
+    const [month, setMonth] = useState(4);
+    const [visible, setVisible] = useState(true)
 
-    if (init) {
-        fetch("/api/game_list?recent=1").then(res => res.json()).then(json => setGameList(json))
-        setInit(false)
-    }
+    useEffect(() => {
+        setVisible(true)
+        fetch("/api/game_list?month=" + month).then(res => res.json()).then(json => setGameList(json)).then(() => setVisible(false))
+    }, [month])
 
     return (
         <>
             <MainHeader/>
-            <h2 className='text-center m-4'>현재 시즌 경기</h2>
-            <Row className="justify-content-center align-content-center w-100 m-0">
-                <h2 className="text-center m-4">◀</h2>
-                <h2 className="text-center m-4">3월</h2>
-                <h2 className="text-center m-4">▶</h2>
+            <Row className="justify-content-center">
+                <h2 className='text-center m-4'>현재 시즌 경기</h2>
             </Row>
-            <Container>
+            <Row className="justify-content-center align-content-center w-100 m-0">
+                <h2 className="text-center m-4" onClick={() => {
+                    if (month > 4)
+                        setMonth(month - 1)
+                }}>◀</h2>
+                <h2 className="text-center m-4">{month}월</h2>
+                <h2 className="text-center m-4" onClick={() => {
+                    if (month < 10)
+                        setMonth(month + 1)
+                }}>▶</h2>
+            </Row>
+            <Container className={getVisibility(!visible)}>
                 <Accordion className="text-center">
                     <Card.Body>
                         <ListGroup variant="flush">
-                            <GameListTable/>
+                            <GameListTable gameList={gameList}/>
                         </ListGroup>
                     </Card.Body>
                 </Accordion>
             </Container>
+            <Row className="justify-content-center">
+                <Spinner className={"m-4 " + getVisibility(visible)} animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </Row>
 
             <MainFooter/>
         </>
