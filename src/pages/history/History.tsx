@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {MainHeader} from "../../components/MainHeader";
 import MainFooter from "../../components/MainFooter";
 import {Accordion, Button, Card, Container, Row, Spinner} from "react-bootstrap";
@@ -10,13 +10,11 @@ import {getVisibility} from "../../lib/functions";
 export default function History() {
 
   const [gameList, setGameList] = useRecoilState(gameListState);
-  const [init, setInit] = useState(true);
   const [visible, setVisible] = useState(true)
 
-  if (init) {
-    fetch("/api/game_list").then(res => res.json()).then(json => setGameList(json)).then(() => setVisible(false))
-    setInit(false)
-  }
+  useEffect(() => {
+    fetch("/api/game_list?simulated=1").then(res => res.json()).then(json => setGameList(json)).then(() => setVisible(false))
+  }, [])
 
   return (
       <>

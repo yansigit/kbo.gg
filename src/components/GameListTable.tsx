@@ -14,7 +14,8 @@ export default function GameListTable(props: { gameList: GameData[] }) {
                         <td>{date}</td>
                         <td>{time}</td>
                         <td>{game.gameStadium}</td>
-                        <td>{game.awayTeam.team_name} VS {game.homeTeam.team_name}</td>
+                        <td><a href={'/game/' + game.gameId}>{game.awayTeam.team_name} VS {game.homeTeam.team_name}</a>
+                        </td>
                     </tr>
                 }
             })}

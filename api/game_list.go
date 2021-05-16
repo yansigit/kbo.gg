@@ -23,6 +23,7 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 
 	isRecent := r.URL.Query().Get("recent")
 	month := r.URL.Query().Get("month")
+	simulated := r.URL.Query().Get("simulated")
 	timezone := time.UTC // time.LoadLocation("Asia/Seoul")
 	gteDate := time.Date(2021, 1, 1, 0, 0, 0, 0, timezone)
 	lteDate := time.Date(2022, 1, 1, 0, 0, 0, 0, timezone)
@@ -50,10 +51,18 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 		lteDate = gteDate.AddDate(0, 1, 0)
 	}
 
-	err := mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"gameDate": bson.M{
-		operator.Gte: gteDate,
-		operator.Lte: lteDate,
-	}}, findOptions)
+	var err error
+	if len(simulated) > 0 {
+		err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"gameId": bson.M{
+			operator.Exists: true,
+			operator.Ne:     nil,
+		}}, findOptions)
+	} else {
+		err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"gameDate": bson.M{
+			operator.Gte: gteDate,
+			operator.Lte: lteDate,
+		}}, findOptions)
+	}
 
 	if err != nil {
 		fmt.Fprint(w, err.Error())
