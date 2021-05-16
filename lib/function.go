@@ -2,6 +2,7 @@ package lib
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -14,7 +15,7 @@ import (
 func MongoConnect() {
 	err := godotenv.Load("C:\\Users\\lnb\\WebstormProjects\\kbo.gg\\.env")
 	if err != nil {
-		panic("Error loading .env file")
+		fmt.Println("Error loading .env file")
 	}
 
 	err = mgm.SetDefaultConfig(nil, "KBOGG_GAME", options.Client().ApplyURI(os.Getenv("MONGO_URL")))
