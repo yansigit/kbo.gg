@@ -25,12 +25,12 @@ export default function GameList() {
                 <h2 className='text-center m-4'>현재 시즌 경기</h2>
             </Row>
             <Row className="justify-content-center align-content-center w-100 m-0">
-                <h2 className="text-center m-4" onClick={() => {
+                <h2 className="text-center m-4" style={{cursor: "grab"}} onClick={() => {
                     if (month > 4)
                         setMonth(month - 1)
                 }}>◀</h2>
                 <h2 className="text-center m-4">{month}월</h2>
-                <h2 className="text-center m-4" onClick={() => {
+                <h2 className="text-center m-4" style={{cursor: "grab"}} onClick={() => {
                     if (month < 10)
                         setMonth(month + 1)
                 }}>▶</h2>

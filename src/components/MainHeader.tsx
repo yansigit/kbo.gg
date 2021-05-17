@@ -47,9 +47,6 @@ export class MainHeader extends React.Component {
                             <Nav.Item>
                                 <Nav.Link href="/history">과거 내역</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link href="/game/test">테스트</Nav.Link>
-                            </Nav.Item>
                         </Nav>
                     </Navbar>
                 </div>

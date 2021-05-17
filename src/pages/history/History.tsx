@@ -20,7 +20,7 @@ export default function History() {
       <>
         <MainHeader/>
         <h2 className="text-center my-4">과거 경기 기록</h2>
-        <Container>
+        <Container className="mb-4">
           <Accordion defaultActiveKey="0" className="rounded-0">
             <Card className="rounded-0 text-center">
               <Card.Header className="rounded-0 bg-dark">
