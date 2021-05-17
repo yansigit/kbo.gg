@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Container, Jumbotron, Row} from "react-bootstrap";
 import {MainHeader} from "../../components/MainHeader";
 import {MainSideBar} from "../../components/MainSideBar";
@@ -18,9 +18,10 @@ function Game(props: RouteComponentProps<GamePageParams>) {
   const [isFetched, setFetched] = useState(false)
   const [loadingMessage, setLoadingMessage] = useState("로딩중입니다")
   const [gameData, setGameData] = useRecoilState(gameDataState)
+  const [refreshTicker, setRefreshTicker] = useState(1)
   const gameId = match.params.id
 
-  const updateGameData = () => {
+  useEffect(() => {
     postData("/api/read_game", {gameId: gameId}).then(
         res => {
           if ('error' in res) {
@@ -30,12 +31,10 @@ function Game(props: RouteComponentProps<GamePageParams>) {
             setFetched(true)
           }
         })
-  }
-
-  updateGameData()
+  }, [refreshTicker]);
 
   useInterval(() => {
-    updateGameData()
+    setRefreshTicker(refreshTicker + 1)
   }, 8 * 1000);
 
   const graphOptions = {
