@@ -101,6 +101,9 @@ function Game(props: RouteComponentProps<GamePageParams>) {
                   실시간 경기
                 </Card.Header>
                 <Card.Body className="p-0">
+                  <h3>{gameData.inning}</h3>
+                </Card.Body>
+                <Card.Body className="p-0">
                   <Jumbotron
                       className="d-flex align-items-center justify-content-center rounded-0 m-0 game-big-panel"
                       fluid>

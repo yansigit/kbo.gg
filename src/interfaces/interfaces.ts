@@ -16,6 +16,7 @@ export interface SideBarProps {
 
 export interface GameData {
     id?: any,
+    inning?: number,
     created_at?: any,
     updated_at?: any,
     gameDate: any,
@@ -26,12 +27,14 @@ export interface GameData {
         team_name: string,
         current_player: string,
         current_player_position: string,
+        bat_lineup: string[],
     },
     homeTeam: {
         score: number,
         team_name: string,
         current_player: string,
         current_player_position: string,
+        bat_lineup: string[],
     },
     graph_data: {
         x: string[],

@@ -19,9 +19,9 @@ export default function Main() {
       <div className="app">
           <MainHeader/>
 
-          <div className="w-100 notification-bar text-center py-2">
-              <h5>(공지) 현재 두산 VS 삼성 매치가 진행중입니다</h5>{' '}<a href="/game/test">[바로가기]</a>
-          </div>
+          {/*<div className="w-100 notification-bar text-center py-2">*/}
+          {/*    <h5>(공지) 현재 두산 VS 삼성 매치가 진행중입니다</h5>{' '}<a href="/game/test">[바로가기]</a>*/}
+          {/*</div>*/}
 
           <Jumbotron id="main-search-jumbotron" className="rounded-0 text-center mb-0" fluid>
               <h3 className="text-white font-weight-bold">다음 경기일정</h3>
