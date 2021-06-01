@@ -18,11 +18,11 @@ type Game struct {
 }
 
 type Team struct {
-	Score                 int    `json:"score" bson:"score"`
-	TeamName              string `json:"team_name" bson:"team_name"`
-	CurrentPlayer         string `json:"current_player" bson:"current_player"`
-	CurrentPlayerPosition string `json:"current_player_position" bson:"current_player_position"`
-	BatLineup             string `json:"bat_lineup" bson:"bat_lineup"`
+	Score                 int      `json:"score" bson:"score"`
+	TeamName              string   `json:"team_name" bson:"team_name"`
+	CurrentPlayer         string   `json:"current_player" bson:"current_player"`
+	CurrentPlayerPosition string   `json:"current_player_position" bson:"current_player_position"`
+	BatLineup             []string `json:"bat_lineup" bson:"bat_lineup"`
 }
 
 type Graph struct {
