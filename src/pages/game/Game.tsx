@@ -92,7 +92,8 @@ function Game(props: RouteComponentProps<GamePageParams>) {
         <Container fluid>
           <Row>
             <Col xl={{span: 2, order: 'first'}}>
-              <MainSideBar type="away" currentPlayer={awayCurrentPlayerInfo} className="mt-4 game-card"/>
+              <MainSideBar type="away" currentPlayer={awayCurrentPlayerInfo} bat_lineup={gameData.awayTeam.bat_lineup}
+                           className="mt-4 game-card"/>
             </Col>
 
             <Col xl={{span: 8}} xs={{order: 'first'}}>
@@ -100,12 +101,12 @@ function Game(props: RouteComponentProps<GamePageParams>) {
                 <Card.Header>
                   실시간 경기
                 </Card.Header>
-                <Card.Body className="p-0">
-                  <h3>{gameData.inning}</h3>
-                </Card.Body>
-                <Card.Body className="p-0">
+                <Card.Body className="p-0 game-big-panel">
+                  <Row className="justify-content-center mt-5">
+                    <h3 className="text-white">{gameData.inning}</h3>
+                  </Row>
                   <Jumbotron
-                      className="d-flex align-items-center justify-content-center rounded-0 m-0 game-big-panel"
+                      className="d-flex align-items-center justify-content-center rounded-0 m-0 game-big-panel pt-0"
                       fluid>
                     <table className="d-inline-block">
                       <tr>
@@ -155,7 +156,8 @@ function Game(props: RouteComponentProps<GamePageParams>) {
             </Col>
 
             <Col xl={2}>
-              <MainSideBar type="home" currentPlayer={homeCurrentPlayerInfo} className="mt-4 game-card"/>
+              <MainSideBar type="home" currentPlayer={homeCurrentPlayerInfo} bat_lineup={gameData.homeTeam.bat_lineup}
+                           className="mt-4 game-card"/>
             </Col>
           </Row>
         </Container>

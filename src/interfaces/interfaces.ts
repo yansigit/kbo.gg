@@ -12,6 +12,7 @@ export interface SideBarProps {
     className?: string;
     currentPlayer: CurrentPlayerInfo;
     type: string;
+    bat_lineup?: string[];
 }
 
 export interface GameData {

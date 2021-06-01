@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Row} from "react-bootstrap";
+import {Card, Col, Row, Table} from "react-bootstrap";
 import {SideBarProps} from "../interfaces/interfaces";
 
 export class MainSideBar extends React.Component<SideBarProps> {
@@ -40,28 +40,18 @@ export class MainSideBar extends React.Component<SideBarProps> {
                         </table>
                     </Col>
                 </Row>
-                {/*<Table striped bordered hover size="sm" className="m-0">*/}
-                {/*    <tbody>*/}
-                {/*    <tr>*/}
-                {/*        <td>타석</td>*/}
-                {/*        <td>{this.props.currentPlayer.tasuk}</td>*/}
-                {/*        <td>타수</td>*/}
-                {/*        <td>{this.props.currentPlayer.tasu}</td>*/}
-                {/*    </tr>*/}
-                {/*    <tr>*/}
-                {/*        <td>안타</td>*/}
-                {/*        <td>{this.props.currentPlayer.anta}</td>*/}
-                {/*        <td>피삼진</td>*/}
-                {/*        <td>{this.props.currentPlayer.pisamjin}</td>*/}
-                {/*    </tr>*/}
-                {/*    <tr>*/}
-                {/*        <td>타점</td>*/}
-                {/*        <td>{this.props.currentPlayer.tajum}</td>*/}
-                {/*        <td>홈런</td>*/}
-                {/*        <td>{this.props.currentPlayer.homerun}</td>*/}
-                {/*    </tr>*/}
-                {/*    </tbody>*/}
-                {/*</Table>*/}
+                <Table bordered hover size="sm" className="m-0 mt-2">
+                    <thead>
+                    <tr>
+                        <td className="font-weight-bold bg-dark text-white">타자 라인업</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.props.bat_lineup?.map(((value, index) => <tr>
+                        <td>{value}</td>
+                    </tr>))}
+                    </tbody>
+                </Table>
             </Card.Body>
         </Card>
     }
