@@ -14,6 +14,7 @@ type Game struct {
 	GraphData        Graph     `json:"graph_data" bson:"graph_data"`
 	GameDate         time.Time `json:"gameDate" bson:"gameDate"`
 	GameStadium      string    `json:"gameStadium" bson:"gameStadium"`
+	Inning           string    `json:"inning" bson:"inning"`
 }
 
 type Team struct {
