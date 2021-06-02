@@ -56,7 +56,7 @@ func GAME_LIST(w http.ResponseWriter, r *http.Request) {
 FIND:
 	var err error
 	if len(simulated) > 0 {
-		err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"gameId": bson.M{
+		err = mgm.Coll(&lib.Game{}).SimpleFind(&result, bson.M{"inning": bson.M{
 			operator.Exists: true,
 			operator.Ne:     nil,
 		}}, findOptions)
