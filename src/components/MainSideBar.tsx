@@ -15,7 +15,6 @@ export class MainSideBar extends React.Component<SideBarProps> {
         }
     }
 
-
     render() {
         return <Card className={'rounded-0 ' + this.props.className}>
             <Card.Header className={this.headerColor}>
@@ -27,6 +26,11 @@ export class MainSideBar extends React.Component<SideBarProps> {
                         <img
                             src={"/image/" + this.props.currentPlayer.teamName + "_" + this.props.currentPlayer.playerName + ".jpg"}
                             alt="선수 사진" className="w-100 h-100"
+                            onError={event => {
+                                event.currentTarget.onerror = null;
+                                event.currentTarget.src = '/image/NO_IMAGE.jpg';
+                            }
+                            }
                             style={{maxHeight: "150px", maxWidth: "150px", border: '1px solid grey', margin: '3px'}}/>
                     </Col>
                     <Col sm={7} className="d-flex flex-column">
